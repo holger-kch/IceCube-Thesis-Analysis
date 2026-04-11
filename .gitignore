@@ -205,3 +205,66 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# ============================================================
+# Thesis-analysis specific exclusions
+# ============================================================
+
+# Large data files (SQLite DBs from IceCube simulations / processed events)
+*.db
+*.db-shm
+*.db-wal
+*.h5
+*.hdf5
+*.parquet
+*.feather
+*.pickle
+*.pkl
+*.i3
+*.i3.zst
+*.i3.gz
+*.i3.bz2
+
+# Model weights / checkpoints
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.safetensors
+
+# PyTorch Lightning / training artifacts
+lightning_logs/
+**/checkpoints/
+**/output/checkpoints/
+
+# Logs
+*.log
+logs/
+**/logs/
+slurm-*.out
+**/cache_and_logs/
+
+# Jupyter / IPython
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Large prediction/results CSV dumps (keep metrics.json and small summary files)
+**/results/**/test_results.csv
+**/results/**/*_results.csv
+**/output/**/*_results.csv
+**/output/**/split.json
+**/results/**/split.json
+**/reweighting_multitask_mc_to_bs/data/*.csv
+**/reweighting_multitask_mc_to_bs/results/*.csv
+MC_vs_BS_analysis/Data/pid_predictions_*.csv
+**/multitask_predictions_*.csv
+
+# Keep small .csv summaries at top of folders, drop big numeric dumps
+**/finding_the_angles/**/*_results.csv
+**/finding_the_angles/lightning_logs/
