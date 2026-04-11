@@ -1,0 +1,18 @@
+{
+  "task": "stopped_through_classification",
+  "test": {
+    "val_loss": 0.12853510677814484,
+    "auc": 0.9915784347665365,
+    "auc_weighted": 0.9884241807406955,
+    "accuracy": 0.9486987011704282,
+    "accuracy_weighted": 0.9405502080917358,
+    "n_stopped": 104543,
+    "n_through": 97947
+  },
+  "best_val_auc": 0.9881660409904969,
+  "n_train": 1619920,
+  "n_val": 202490,
+  "n_test": 202490,
+  "n_params": 3371981,
+  "pos_weight": 2.442875862121582
+}
