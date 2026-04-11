@@ -10,6 +10,17 @@ pulses in order to estimate particle properties (direction, energy,
 position, particle type) and to validate Monte Carlo simulations against
 real detector data.
 
+## Highlights
+
+| | |
+|---|---|
+| **Transformer muon reconstruction (720k events)** — per-event predicted vs. true zenith/azimuth/energy/vertex-z with the pulse transformer. | ![Per-event scatter](Classifiers/Inars_zenith_azimuth_transformer_recon/results/transformer_720k_muons/per_event_scatter_720k.png) |
+| **Multi-task transformer — direction evaluation.** Shared backbone, joint heads for energy, direction and vertex position. | ![Direction evaluation](Classifiers/Muon_Reconstruction/multi_task_transformer/results/transformer_multitask_720k_v1/direction_evaluation.png) |
+| **Stopped vs. through-going muon classifier.** Pulse transformer + event-level summary features. | ![Stopped/through classifier](ThroughOrStopped_muon/results/stopped_transformer_2M/plots/overview.png) |
+| **MC→BS reweighting with GBReweighter.** Reconstructed-feature distributions before and after the correction step. | ![Reweighting](Classifiers/Muon_Reconstruction/reweighting_multitask_mc_to_bs/results/reweighting_distributions.png) |
+| **MC vs. burnsample separability** on reconstructed features (DynEdge classifier). | ![MC vs BS](MC_vs_BS_analysis/results/MC_BS_SEPERATION.png) |
+
+
 > **Note on data and weights.** IceCube simulation databases, burnsample
 > data, and trained model checkpoints are not distributed with this
 > repository — they live on the HEP cluster at NBI and are too large for
