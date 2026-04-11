@@ -191,10 +191,6 @@ need to be adapted for any other environment.
 
 ---
 
-## License
-
-Released under the [MIT License](LICENSE).
-
 ## Author
 
 Holger Christiansen — Master's student, Niels Bohr Institute,

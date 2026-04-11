@@ -268,3 +268,8 @@ MC_vs_BS_analysis/Data/pid_predictions_*.csv
 # Keep small .csv summaries at top of folders, drop big numeric dumps
 **/finding_the_angles/**/*_results.csv
 **/finding_the_angles/lightning_logs/
+
+# Event-ID split files and selection metadata (reference real/MC events)
+*_split.json
+**/bs_muon_selection_info.json
+**/subrun_event_counts_*.csv
