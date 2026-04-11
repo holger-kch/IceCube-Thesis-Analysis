@@ -1,0 +1,10 @@
+{
+  "energy_mean_residual": -32.297623046419396,
+  "energy_std_residual": 149.12647163999048,
+  "energy_median_residual": 1.6300294732997997,
+  "energy_mae": 72.18724602876068,
+  "energy_q68_abs": 57.10622054446839,
+  "energy_q90_abs": 156.17048202797238,
+  "n_test": 8000,
+  "checkpoint": "/groups/icecube/holgerkc/Thesis_Analysis/Classifiers/Muon_Reconstruction/lightning_logs/version_14/checkpoints/DynEdge-epoch=24-val_loss=70.06-train_loss=70.90.ckpt"
+}

@@ -1,0 +1,48 @@
+#configuration for training the DynEdge GNN for PID (GNN.py)
+
+checkpoint_path: "/groups/icecube/nielsdb/LE_neutrino_model_Aug2025/GNN_output/MC_balanced_1M/160226/checkpoints/GNN_Model_MC_balanced_1M_160226-epoch=05-val_loss=0.0756.ckpt"
+restore_full_training_state: False  # If true, restore optimizer/LR/epoch state from checkpoint; if false, only restore model weights
+model_date: "180226"                #used to distinguish between trainings on the same db
+output_folder: /groups/icecube/nielsdb/LE_neutrino_model_Aug2025/GNN_output
+
+# Suppress console printing/log noise from training when true
+quiet: true
+include_weights: false  #detrimental to performance for PID, and not the way to go (I think)
+
+# Input Data Parameters
+input_data:
+  input_path: "MC_balanced_2.4M"            #db to be used: /lustre/hpc/icecube/nielsdb/LE_dbs/{}.db, important not to include the .db
+  max_pulses_per_event: 500     #cuts <1%          #cuts all events with more pulses - to limit memory usage
+  #improve the above, to shorten not to remove
+
+model_params:
+  pulsemap: SplitInIcePulses      #name of the table in the input db
+  pulse_features: ["dom_x", "dom_y", "dom_z", 'dom_time', 'charge', 'rde', 'pmt_area', 'is_bright_dom', 'is_bad_dom', 'is_saturated_dom', 'is_errata_dom', 'hlc'] #columns in pulsemap, all except width (doesnt work ?) and event_time/ and event_no
+  nb_neighbours: 8                #neighbours for KNNGraph and DynEgde models - reduced for better locality
+  #^^ 8-12 often works better than 16 for avoiding over-smoothing
+  global_pooling_schemes: ["max", "mean", "sum"]
+  dynedge_layer_sizes: [[256, 512], [512, 512], [512, 256], [256, 256]]  # Increased capacity
+  post_processing_layer_sizes: [512, 256, 128]  # Added depth
+  readout_layer_sizes: [256, 128]  # Increased readout capacity
+  
+training_params:
+  n_epochs: 80
+  patience: 10
+  accelerator: "gpu"
+  devices: 1
+  batch_size: 192   # Increased from 128 for better GPU utilization
+  num_workers: 8    # Optimal for system (was 32, causing massive slowdown)
+  optimizer_class: AdamW      #Only Adam and AdamW are supported
+  learning_rate: 0.00005
+  eps: 1e-08
+  scheduler_class: PiecewiseLinearLR
+  milestones: [0,10,20, 30, 40, 80]
+  factors: [1, 0.75, 0.5, 0.25, 0.2, 0.1]
+
+use_wandb: true                          # Whether to use Weights & Biases for logging
+wandb_params:
+  wandb_project: "GNN_pid"   # Name of the Weights & Biases project
+  log_every_n_steps: 500
+
+inference:
+  checkpoint_path: "/groups/icecube/nielsdb/LE_neutrino_model_Aug2025/GNN_output/LE_MC_eq_1M/191125/checkpoints/GNN_Model_LE_MC_eq_1M_191125-epoch=22-val_loss=0.0562.ckpt"

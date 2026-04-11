@@ -1,0 +1,7 @@
+{
+  "pid_csv": "/groups/icecube/holgerkc/Thesis_Analysis/MC_vs_BS_analysis/Data/results/pid_predictions_100000_MC_and_BS.csv",
+  "muon_threshold": 0.8,
+  "n_bs_total": 100000,
+  "n_bs_muons": 71454,
+  "muon_fraction": 0.71454
+}

@@ -1,0 +1,20 @@
+{
+  "target": "position_z",
+  "test": {
+    "val_loss": 0.25288188457489014,
+    "mae_position_z": 126.44039916992188,
+    "median_error_position_z": 66.52536010742188,
+    "q68_error_position_z": 139.87697021484382
+  },
+  "best_val_loss": 0.25156307220458984,
+  "n_train": 575789,
+  "n_val": 71973,
+  "n_test": 71975,
+  "n_params": 547721,
+  "mode": "position",
+  "mae_position_z": 126.44039916992188,
+  "median_error_position_z": 66.52536010742188,
+  "q68_error_position_z": 139.87697021484382,
+  "q90_error_position_z": 315.068603515625,
+  "q95_error_position_z": 430.0083740234376
+}

@@ -1,0 +1,27 @@
+{
+  "db_path": "/groups/icecube/petersen/GraphNetDatabaseRepository/osc_next_database_new_muons_peter/Merged_db/osc_next_level3_v2.00_genie_muongun_noise_120000_140000_160000_139008_888003_retro.db",
+  "pulsemap": "SplitInIcePulses",
+  "features": [
+    "charge",
+    "dom_x",
+    "dom_y",
+    "dom_z",
+    "dom_time",
+    "rde",
+    "pmt_area"
+  ],
+  "truth": [
+    "azimuth",
+    "zenith",
+    "pid",
+    "energy"
+  ],
+  "max_events": 5000,
+  "epochs": 20,
+  "batch_size": 64,
+  "lr": 0.001,
+  "seed": 42,
+  "n_train": 4000,
+  "n_val": 500,
+  "n_test": 500
+}

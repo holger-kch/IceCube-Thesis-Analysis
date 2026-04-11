@@ -1,0 +1,13 @@
+{
+  "target": "position_z",
+  "model": "pulse_transformer",
+  "checkpoint": "partial (best_model.pt from interrupted training)",
+  "n_test": 71975,
+  "n_train": 575789,
+  "mae_m": 126.5397720336914,
+  "median_error_m": 61.2235107421875,
+  "q68_error_m": 135.15804199218758,
+  "q90_error_m": 325.8058471679687,
+  "mean_residual_m": 38.836097717285156,
+  "std_residual_m": 203.2497100830078
+}

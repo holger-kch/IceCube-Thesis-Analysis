@@ -1,0 +1,28 @@
+{
+  "db_path": "/groups/icecube/janikh/PREP/Transformer_Muon_Track_Reco/data/muons_139008.db",
+  "split_json": null,
+  "mode": "position",
+  "features": [
+    "dom_x",
+    "dom_y",
+    "dom_z",
+    "dom_time",
+    "charge",
+    "width"
+  ],
+  "epochs": 30,
+  "batch_size": 256,
+  "lr": 0.001,
+  "weight_decay": 0.01,
+  "d_model": 128,
+  "num_layers": 4,
+  "num_heads": 8,
+  "ffn_dim": 256,
+  "head_hidden_dim": 128,
+  "input_mode": "linear",
+  "dropout": 0.0,
+  "seed": 42,
+  "input_dim": 52,
+  "max_pulses_per_dom": 16,
+  "max_doms": 128
+}

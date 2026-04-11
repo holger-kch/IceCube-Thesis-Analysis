@@ -1,0 +1,12 @@
+{
+  "n_test": 500,
+  "azimuth_mae_deg": 88.4519836348293,
+  "zenith_mae_deg": 61.862683838764255,
+  "opening_mae_deg": 72.12684203174653,
+  "azimuth_median_deg": 88.6519947760971,
+  "zenith_median_deg": 58.22520626414964,
+  "opening_median_deg": 68.49767203905598,
+  "opening_q68_deg": 86.09314958664216,
+  "opening_q90_deg": 126.42455650674295,
+  "opening_q95_deg": 138.29902396346256
+}

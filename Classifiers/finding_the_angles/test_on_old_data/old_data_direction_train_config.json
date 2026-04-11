@@ -1,0 +1,27 @@
+{
+  "db_path": "/groups/icecube/holgerkc/Thesis_Analysis/Classifiers/finding_the_angles/test_on_old_data/merged/events.db",
+  "pulsemap": "SplitInIcePulses",
+  "features": [
+    "charge",
+    "dom_x",
+    "dom_y",
+    "dom_z",
+    "dom_time",
+    "rde",
+    "pmt_area"
+  ],
+  "truth": [
+    "azimuth",
+    "zenith",
+    "pid",
+    "energy"
+  ],
+  "max_events": 5000,
+  "epochs": 20,
+  "batch_size": 64,
+  "lr": 0.001,
+  "seed": 42,
+  "n_train": 4000,
+  "n_val": 500,
+  "n_test": 500
+}
