@@ -1,0 +1,6 @@
+Total: 38,885,781
+L3: 22,471,196
+L3 muon: 68,290
+L3 muon stopped: 34,700
+L3 muon through: 33,590
+Time: 1645s
