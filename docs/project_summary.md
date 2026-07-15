@@ -1,9 +1,9 @@
 # Project Summary
 
-This is the compact GitHub version of the report in
-`/groups/icecube/holgerkc/final/main.pdf`. It follows the same scientific
-story, but it is written for navigation: every analysis step explains what was
-done, why it was done, which figure shows the effect, and where the code lives.
+Simulated Muon Gun atmospheric muons are compared with real 2021 burnsample
+muons using the same IceCube pulse representation. The report version is
+`/groups/icecube/holgerkc/final/main.pdf`; the analysis code comes from
+`/groups/icecube/holgerkc/Thesis_Analysis`.
 
 ## Motivation
 
@@ -26,20 +26,21 @@ Cherenkov light in DOMs, and the project uses the processed
 pulses. The relevant pulse-level variables are `charge`, `dom_time`,
 `dom_x`, `dom_y`, `dom_z`, `hlc`, and `rde`.
 
-The detector and readout figures support that setup rather than acting as
-standalone decoration. The [IceCube detector schematic](../figures/report/icecube.png)
-shows the geometry. The [Cherenkov schematic](../figures/report/shrenkov.pdf)
-explains why charged particles produce the light the DOMs record. The
+The [IceCube detector schematic](../figures/report/icecube.png) fixes the
+geometry: strings of DOMs embedded in ice, with DeepCore and IceTop shown as
+separate detector regions. The
+[Cherenkov schematic](../figures/report/shrenkov.pdf) explains why relativistic
+charged particles produce the cone of light that the DOMs record. The
 [HLC waveform example](../figures/report/plot_run126491_event30343391_DOM83-31-0.pdf)
-shows the lower-level DOM signal behind a reconstructed pulse, and the waveform
-code is preserved in
+shows the ATWD and fADC waveform behind a reconstructed pulse, including small
+delayed pulses after the main signal; the plotting code is preserved in
 [waveform_demo](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/).
 The [stopped/through event display](../figures/report/event_display_through_stopped.pdf),
 made with
 [plot_event_display_through_stopped.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_event_display_through_stopped.py)
 and [pulse_event_display.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/pulse_event_display.py),
-is the first visual reason why the analysis treats stopped and through-going
-muons separately.
+shows the topology difference that later motivates separate stopped and
+through-going MC-vs-data comparisons.
 
 ## Stopped vs Through-Going Split
 
@@ -258,8 +259,8 @@ and the logit catalog from
 ## Remaining Questions
 
 The final AUC values are still far above chance, so the remaining separation is
-scientifically meaningful. The report highlights several likely places to look
-next. The permutation study ranks `dom_time` immediately behind `hlc`, and the
+scientifically meaningful. The permutation study ranks `dom_time` immediately
+behind `hlc`, and the
 baseline plots show a later data tail that none of the corrections directly
 targets. The horizontal DOM coordinates also retain separation, which could
 point to surface-entry or detector-entry differences between real and simulated

@@ -1,12 +1,7 @@
 # Reproduction Notes
 
-This repository is a code-first project archive, not a standalone data release.
-It is meant to preserve the report logic, figures, scripts, configs, metrics,
-and navigation needed to understand and rerun the project on the NBI/HEP
-cluster.
-
-The public repo therefore answers "what was done and where is the code?" much
-better than "can I rerun every job immediately after cloning?". A full rerun
+The analysis was developed on the NBI/HEP IceCube cluster. The repository keeps
+the report logic, figures, scripts, configs, and metrics, but a full rerun
 still depends on the local IceCube data products and cluster environment.
 
 ## Included
@@ -21,9 +16,8 @@ The repository intentionally includes:
 - The visual figures used by `/groups/icecube/holgerkc/final/main.pdf`.
 - PNG previews of PDF figures for GitHub browsing.
 
-The included figures are generated outputs, but they are part of the readable
-GitHub version of the project and make it possible to inspect the report
-results without regenerating every cluster job.
+The report figures are included so the results can be inspected without
+regenerating every cluster job.
 
 ## Excluded
 

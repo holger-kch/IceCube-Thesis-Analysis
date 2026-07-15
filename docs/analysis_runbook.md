@@ -1,17 +1,12 @@
 # Analysis Runbook
 
-This is the practical map of how the analysis was built. It is meant for future
-readers who understand the story from the README and now want to find the code
-paths, inputs, outputs, and dependencies for each stage.
-
-Use this as an execution map, not as the main explanation of the physics. The
-README and project summary explain the scientific argument; each runbook stage
-below gives the corresponding production path and says how that output enters
-the report.
+This is the practical map of how the analysis was built. Each stage gives the
+code path, the required inputs, and the report output produced by that part of
+the workflow.
 
 The repository does not include raw data, derived parquet tables, SQLite
-databases, model checkpoints, or Slurm logs. The commands therefore document
-the original workflow rather than forming a one-command public reproduction.
+databases, model checkpoints, or Slurm logs. A full rerun requires the original
+cluster data products.
 
 ## Stage 0: Prepare Shared Inputs
 
@@ -212,7 +207,6 @@ figures.
 ## Reading Rule Of Thumb
 
 For every result figure, start in [figure_index.md](figure_index.md). For every
-analysis stage, start in this runbook or [code_map.md](code_map.md). For every
-claim about whether a report item is code-generated, reference-derived, or
-intentionally not rerunnable from the public repo alone, use
+analysis stage, start in this runbook or [code_map.md](code_map.md). For table
+and figure coverage against the report, use
 [report_traceability.md](report_traceability.md).

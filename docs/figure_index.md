@@ -1,12 +1,7 @@
 # Figure Index
 
-This index maps the report figures in `figures/report/` to the scripts and
-analysis code that generated them or produced the result shown in them.
-
-It is not meant to replace the README narrative. Read the relevant README
-section first, then use this file to answer the practical question: where did
-this exact figure come from, and which code should I inspect if I want to
-understand or rerun that part of the analysis?
+This index maps each report figure in `figures/report/` to the script,
+analysis directory, or reference source behind it.
 
 For PDF figures, `figures/report_previews/` contains PNG previews for GitHub
 browsing. The original PDF/PNG files are kept in `figures/report/`.

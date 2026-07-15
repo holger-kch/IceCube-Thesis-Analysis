@@ -4,16 +4,10 @@ This directory is a filtered source mirror of
 `/groups/icecube/holgerkc/Thesis_Analysis` for the Master Thesis Preparation
 Project.
 
-It is intentionally broad: it keeps the code, notebooks, Slurm scripts,
-configs, metrics, and small summaries needed to trace the figures and results
-in the GitHub project. It is not a raw data mirror. Databases, parquet tables,
+It keeps the Python code, notebooks, Slurm scripts, configs, metrics, and small
+summaries needed to trace the figures and results. Databases, parquet tables,
 CSV exports, checkpoints, logs, caches, and other heavy/generated data products
 are excluded.
-
-The best way to read this directory is through the documentation layer first:
-the README explains why each stage exists, the code map points to the relevant
-subtree, and this directory contains the source once you know what you are
-looking for.
 
 ## Main Project Areas
 

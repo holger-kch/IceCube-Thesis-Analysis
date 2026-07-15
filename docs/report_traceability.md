@@ -1,11 +1,8 @@
 # Report Traceability
 
-This document audits the GitHub repository against the local report
-`/groups/icecube/holgerkc/final/main.pdf`.
-
-The goal is not to copy the LaTeX report word-for-word. The goal is to make the
-GitHub project readable on its own while preserving the same scientific content,
-all report figures, and the analysis code or source behind each result.
+This document audits the repository against the local report
+`/groups/icecube/holgerkc/final/main.pdf`: report figures, numerical tables,
+and the code or source behind each result.
 
 ## Coverage Summary
 
@@ -31,7 +28,7 @@ Some report material is not code-generated:
 - explanatory theory text on Cherenkov light, decision trees, boosting, and
   transformers.
 
-Those are marked as reference/source material rather than analysis-code output.
+Those are marked as reference/source material.
 
 ## Report Flow To Repository Flow
 
@@ -72,8 +69,7 @@ For the full per-figure mapping, see [figure_index.md](figure_index.md).
 
 ## Limits Of The GitHub Version
 
-This repository is intended to make the project understandable and auditable,
-not to be a full rerunnable data release.
+A full rerun requires the local data products and compute environment.
 
 Included:
 
@@ -94,6 +90,6 @@ Excluded:
 - logs and cache files,
 - the local LaTeX report source/build products.
 
-Therefore, the repository contains the code and provenance needed to understand
-and audit the project, but rerunning the full analysis requires access to the
-local data products and compute environment.
+The repository contains the code and provenance needed to audit the project;
+rerunning the full analysis requires access to the local data products and
+compute environment.
