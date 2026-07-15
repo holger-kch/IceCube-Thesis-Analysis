@@ -5,6 +5,10 @@ It is meant to preserve the report logic, figures, scripts, configs, metrics,
 and navigation needed to understand and rerun the project on the NBI/HEP
 cluster.
 
+The public repo therefore answers "what was done and where is the code?" much
+better than "can I rerun every job immediately after cloning?". A full rerun
+still depends on the local IceCube data products and cluster environment.
+
 ## Included
 
 The repository intentionally includes:

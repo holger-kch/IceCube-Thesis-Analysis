@@ -147,10 +147,10 @@ model, downstream reconstruction and classification can inherit simulation
 artifacts. Atmospheric muons are used here as a high-statistics test case
 because they are abundant, track-like, and recorded by the same detector.
 
-Useful links:
-
-- [Project summary: motivation](docs/project_summary.md#motivation)
-- [Code map](docs/code_map.md)
+The same motivation is expanded in
+[project_summary.md](docs/project_summary.md#motivation), while
+[code_map.md](docs/code_map.md) gives the implementation path once the reader
+is ready to move from story to source.
 
 ### 2. Detector, DOM readout, and pulse-level events
 
@@ -207,7 +207,8 @@ both MC and real burnsample data.
 This is the first important analysis dependency: every later MC-vs-data
 comparison is performed separately for the two classifier-defined classes.
 
-Code:
+This split is implemented by training the classifier, running it over both
+samples, and then generating the diagnostic plots from the stored predictions:
 
 - [train_stopped_transformer.py](analysis/ThroughOrStopped_muon/train_stopped_transformer.py)
 - [run_inference.py](analysis/ThroughOrStopped_muon/inference/run_inference.py)
@@ -232,7 +233,8 @@ time tails, depth structure, high-charge tails, and HLC fraction. The stronger
 test is the MC-vs-data transformer, which confirms that the joint feature-space
 mismatch is large.
 
-Code:
+The baseline comparison is produced by the MC-vs-data transformer and the
+distribution plotting scripts:
 
 - [transformer model code](analysis/MC_vs_BS_analysis/GBreweighting/validation/transformer/)
 - [train_mcdata_parquet.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/train_mcdata_parquet.py)
@@ -263,7 +265,9 @@ matches data more closely.
 This correction improves the benchmark and fixes the targeted angular
 distributions, but much of the MC-vs-data separability remains.
 
-Code:
+This correction is produced in three linked steps: train/infer the direction
+model, fit the angular GB reweighter, and then regenerate the weighted
+comparison plots:
 
 - [direction_transformer_hlc_rde_unmerged_2M](analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/)
 - [plot_direction_transformer_documentation.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/plot_direction_transformer_documentation.py)
@@ -295,7 +299,8 @@ merged into the nearest above-threshold pulse on the same DOM using the
 This step is physically motivated by waveform behavior and improves the
 benchmark, but only modestly.
 
-Code:
+The pulse-merging correction is implemented by the merger itself and validated
+with both aggregate plots and a single-DOM illustration:
 
 - [pulse_merger.py](analysis/MC_vs_BS_analysis/GBreweighting/pulse_merger.py)
 - [plot_pulse_merging.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/data_parquet_v2/pulse_merging_plots/plot_pulse_merging.py)
@@ -322,7 +327,9 @@ event-level HLC-fraction distribution best matches data.
 
 This is the most important correction in the project.
 
-Code:
+The HLC study first measures which feature the classifier uses, then sweeps
+SLC-to-HLC flip rates, applies the selected flip, and replots the HLC-fraction
+agreement:
 
 - [eval_transformer_perm_compare_hlcflip.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/eval_transformer_perm_compare_hlcflip.py)
 - [run_hlc_flip_sweep_merged_v2_all.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/run_hlc_flip_sweep_merged_v2_all.py)
@@ -347,7 +354,8 @@ the `charge` vs `dom_time` plane after the main corrections. The search does
 not find a clean isolated delayed low-charge island in the pulse-level
 representation.
 
-Code:
+The charge-time check is produced by the afterpulse plotting scripts, with the
+earlier waveform example kept as the DOM-level motivation:
 
 - [plot_afterpulse_a4_transformer_hlcflip_best.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_a4_transformer_hlcflip_best.py)
 - [plot_afterpulse_master.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_master.py)
@@ -378,7 +386,9 @@ show a pole-collapse behavior in the direction prediction, so events with
 This improves the final benchmark slightly and identifies a concrete
 problematic MC population.
 
-Code:
+The vMF diagnostic is produced by the uncertainty-aware direction model and
+the scripts that plot `kappa`, diagnose low-`kappa` MC events, and build the
+final cut:
 
 - [direction_transformer_vmf_final_hlcflip](analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_vmf_final_hlcflip/)
 - [vmf_code_bundle](analysis/MC_vs_BS_analysis/GBreweighting/validation/vmf_code_bundle/)
@@ -411,7 +421,8 @@ modeling, afterpulse effects that are difficult to isolate after pulse
 extraction, and possible imperfections in the muon selection or stopped/through
 split.
 
-Code:
+The final comparison is built by collecting staged logits and plotting the ROC
+and raw-logit views of the same benchmark:
 
 - [build_stage_test_logits.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/build_stage_test_logits.py)
 - [plot_stage_logit_roc_overlay.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_roc_overlay.py)
@@ -426,6 +437,25 @@ Code:
 | <img src="figures/report_previews/logit_catalog_common_xlim.png" alt="Final staged logit distributions" width="300"><br>[logit_catalog_common_xlim.pdf](figures/report/logit_catalog_common_xlim.pdf) | Shows how the classifier confidence changes across the correction chain. | [plot_stage_logit_catalog.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_catalog.py) |
 
 </details>
+
+## Open Questions
+
+The final stage does not mean the remaining mismatch has been explained away.
+It means the project has removed several specific handles and made the
+benchmark classifier less confident. The report leaves a few concrete threads
+for future work:
+
+- `dom_time` remains important in the permutation study, and the late-time data
+  tail is not directly corrected here.
+- `dom_x` and `dom_y` still carry separation, possibly connected to different
+  surface-entry or detector-entry distributions for real and simulated muons.
+- Data show more multi-pulse DOM behavior than MC, but this project only uses
+  pulse merging as a partial correction.
+- The charge-time search does not isolate a clean afterpulse population, but a
+  more targeted sample or higher-energy selection could be more sensitive.
+- The real-data muon selection comes from an external GNN classifier, and the
+  stopped/through split is itself MC-trained. Both selections are therefore
+  natural places to audit if the residual data-MC gap is pursued further.
 
 ## Figure Coverage
 

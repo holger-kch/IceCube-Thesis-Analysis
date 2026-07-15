@@ -3,6 +3,12 @@
 This map follows the report flow and points to the source files that implement
 each analysis stage. For individual figures, use the [figure index](figure_index.md).
 
+The map is deliberately organized by scientific dependency: first shared
+inputs, then the stopped/through split, then the MC-vs-data benchmark and the
+corrections that are layered on top of it. Use it when a README section has
+made the purpose clear and you want the relevant source tree without searching
+through the full project.
+
 The source tree is a filtered mirror of
 `/groups/icecube/holgerkc/Thesis_Analysis`: code, notebooks with outputs
 cleared, Slurm scripts, configs, metrics, and text summaries are included; raw

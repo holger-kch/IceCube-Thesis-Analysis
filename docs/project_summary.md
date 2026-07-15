@@ -1,9 +1,9 @@
 # Project Summary
 
 This is the compact GitHub version of the report in
-`/groups/icecube/holgerkc/final/main.tex`. It follows the same scientific
-story, keeps the same central figures, and points to the analysis code that
-produced the results.
+`/groups/icecube/holgerkc/final/main.pdf`. It follows the same scientific
+story, but it is written for navigation: every analysis step explains what was
+done, why it was done, which figure shows the effect, and where the code lives.
 
 ## Motivation
 
@@ -14,242 +14,265 @@ project tests that assumption with atmospheric muons, comparing roughly two
 million simulated Muon Gun events with roughly two million muon-classified
 events from the 2021 burnsample.
 
-The core diagnostic is deliberately strict: train a model to classify whether
-an event is real data or MC. If the model can do this well, the samples still
+The diagnostic is deliberately strict: train a model to classify whether an
+event is real data or MC. If the model can do this well, the samples still
 differ in the joint feature space.
 
 ## Data Representation
 
-The analysis uses `SplitInIcePulses`, where each event is a variable-size set
-of pulses. The main pulse-level variables are:
+The analysis starts by making clear what the models see. IceCube records
+Cherenkov light in DOMs, and the project uses the processed
+`SplitInIcePulses` representation, where each event is a variable-size set of
+pulses. The relevant pulse-level variables are `charge`, `dom_time`,
+`dom_x`, `dom_y`, `dom_z`, `hlc`, and `rde`.
 
-- `charge`
-- `dom_time`
-- `dom_x`, `dom_y`, `dom_z`
-- `hlc`
-- `rde`
-
-The report first motivates these variables through detector readout, HLC/SLC
-classification, raw waveform examples, and pulse-level event displays.
-
-Important figures:
-
-- [IceCube detector](../figures/report/icecube.png)
-- [Cherenkov schematic](../figures/report/shrenkov.pdf)
-- [HLC waveform example](../figures/report/plot_run126491_event30343391_DOM83-31-0.pdf)
-- [Stopped and through-going event display](../figures/report/event_display_through_stopped.pdf)
-
-Relevant code:
-
-- [waveform demo scripts](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/)
-- [event display plotting](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_event_display_through_stopped.py)
-- [pulse event display utilities](../analysis/MC_vs_BS_analysis/GBreweighting/validation/pulse_event_display.py)
+The detector and readout figures support that setup rather than acting as
+standalone decoration. The [IceCube detector schematic](../figures/report/icecube.png)
+shows the geometry. The [Cherenkov schematic](../figures/report/shrenkov.pdf)
+explains why charged particles produce the light the DOMs record. The
+[HLC waveform example](../figures/report/plot_run126491_event30343391_DOM83-31-0.pdf)
+shows the lower-level DOM signal behind a reconstructed pulse, and the waveform
+code is preserved in
+[waveform_demo](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/).
+The [stopped/through event display](../figures/report/event_display_through_stopped.pdf),
+made with
+[plot_event_display_through_stopped.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_event_display_through_stopped.py)
+and [pulse_event_display.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/pulse_event_display.py),
+is the first visual reason why the analysis treats stopped and through-going
+muons separately.
 
 ## Stopped vs Through-Going Split
 
 Stopped and through-going atmospheric muons are physically different event
-classes, so the analysis first trains a transformer on MC truth labels to split
-them. The classifier sees pulse tokens together with event-level aggregates:
-number of pulses, total charge, time and depth extents, charge-weighted centers,
-and related summaries.
+classes, so the comparison is split before MC and data are benchmarked. A
+transformer is trained on MC truth labels and then applied to both MC and real
+data so the class definition is identical downstream.
 
-Key figures:
-
-- [Training history](../figures/report/training_history.pdf)
-- [Test performance](../figures/report/test_performance.pdf)
-- [MC score distributions](../figures/report/mc_test_score_distributions.pdf)
-
-Relevant code:
-
-- [train_stopped_transformer.py](../analysis/ThroughOrStopped_muon/train_stopped_transformer.py)
-- [plot_stopped_results.py](../analysis/ThroughOrStopped_muon/plot_stopped_results.py)
-- [stopped transformer documentation plots](../analysis/MC_vs_BS_analysis/GBreweighting/validation/stopped_transformer_documentation/plot_stopped_transformer_documentation.py)
-- [stopped/through inference](../analysis/ThroughOrStopped_muon/inference/run_inference.py)
+The training is implemented in
+[train_stopped_transformer.py](../analysis/ThroughOrStopped_muon/train_stopped_transformer.py),
+with inference in
+[run_inference.py](../analysis/ThroughOrStopped_muon/inference/run_inference.py).
+The model diagnostics are plotted by
+[plot_stopped_transformer_documentation.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/stopped_transformer_documentation/plot_stopped_transformer_documentation.py).
+The [training history](../figures/report/training_history.pdf) shows how the
+model converged, the [test performance](../figures/report/test_performance.pdf)
+checks the held-out MC classification quality, and the
+[score distributions](../figures/report/mc_test_score_distributions.pdf) show
+how the two truth classes separate.
 
 ## Baseline MC-vs-Data Comparison
 
-After applying the same stopped/through-going classifier to MC and data, the
-project compares the samples at pulse level and event level. Several mismatches
-are visible before any correction: low-charge data excess, a later data
-`dom_time` tail, depth shifts, larger high-charge tails, and a larger HLC
-fraction in data.
+After the stopped/through split is applied to both samples, the first question
+is what differs before any correction. The baseline pulse-level figures show
+mismatches in `dom_time`, `charge`, horizontal DOM position, depth, DOM
+efficiency, and especially the HLC flag. The event-level aggregate figures show
+the same story at event scale: size, charge, time extent, depth summaries, and
+HLC fraction do not line up perfectly between MC and data.
 
-Key figures:
+The plotting scripts are
+[make_pulse_level_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_pulse_level_a4_figure.py)
+and
+[make_event_aggregate_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py).
+The baseline distribution figures are
+[pulse page 1](../figures/report/pulse_level_variables_unmerged_full_page1.pdf),
+[pulse page 2](../figures/report/pulse_level_variables_unmerged_full_page2.pdf),
+[event page 1](../figures/report/event_level_aggregates_unmerged_full_page1.pdf),
+[event page 2](../figures/report/event_level_aggregates_unmerged_full_page2.pdf),
+and [event page 3](../figures/report/event_level_aggregates_unmerged_full_page3.pdf).
 
-- [Pulse variables page 1](../figures/report/pulse_level_variables_unmerged_full_page1.pdf)
-- [Pulse variables page 2](../figures/report/pulse_level_variables_unmerged_full_page2.pdf)
-- [Event aggregates page 1](../figures/report/event_level_aggregates_unmerged_full_page1.pdf)
-- [Event aggregates page 2](../figures/report/event_level_aggregates_unmerged_full_page2.pdf)
-- [Event aggregates page 3](../figures/report/event_level_aggregates_unmerged_full_page3.pdf)
-
-The benchmark data-vs-MC transformer reaches:
+The stricter benchmark is a pulse-level transformer trained directly to
+separate MC from data. The model and dataset code live in
+[validation/transformer](../analysis/MC_vs_BS_analysis/GBreweighting/validation/transformer/),
+and the staged training entry point is
+[train_mcdata_parquet.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/train_mcdata_parquet.py).
+At baseline it reaches:
 
 | Class | Baseline AUC |
 |---|---:|
 | Stopped | 0.9882 |
 | Through-going | 0.9960 |
 
-Relevant code:
-
-- [transformer model and dataset](../analysis/MC_vs_BS_analysis/GBreweighting/validation/transformer/)
-- [train_mcdata_parquet.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/train_mcdata_parquet.py)
-- [make_pulse_level_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_pulse_level_a4_figure.py)
-- [make_event_aggregate_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py)
+Those values mean the two samples are easily distinguishable before correction.
 
 ## Angular Reweighting
 
 The first correction tests whether part of the mismatch is caused by different
-arrival directions. A DOM-token direction transformer reconstructs zenith and
-azimuth. A gradient-boosted reweighter is then trained on only
-`(zenith, azimuth)`, separately for stopped and through-going events.
+arrival directions. A DOM-token transformer reconstructs zenith and azimuth;
+then a gradient-boosted reweighter changes the MC weights in reconstructed
+direction space.
 
-Key figures:
+The direction model lives in
+[direction_transformer_hlc_rde_unmerged_2M](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/).
+Its held-out reconstruction quality is summarized by
+[open_angle_performance.pdf](../figures/report/open_angle_performance.pdf),
+made by the direction documentation plotting code. The mismatch targeted by
+the reweighter is visible in
+[mc_data_zenith_azimuth_overlay.pdf](../figures/report/mc_data_zenith_azimuth_overlay.pdf).
+After applying
+[fit_GBreweighter_hlc_rde_unmerged_2M.py](../analysis/MC_vs_BS_analysis/GBreweighting/fit_GBreweighter_hlc_rde_unmerged_2M.py),
+the corrected angular comparison is shown in
+[mc_data_zenith_azimuth_overlay_with_GBR.pdf](../figures/report/mc_data_zenith_azimuth_overlay_with_GBR.pdf).
 
-- [Opening angle performance](../figures/report/open_angle_performance.pdf)
-- [Zenith/azimuth before GB reweighting](../figures/report/mc_data_zenith_azimuth_overlay.pdf)
-- [Zenith/azimuth after GB reweighting](../figures/report/mc_data_zenith_azimuth_overlay_with_GBR.pdf)
-- [GB-weighted pulse variables page 1](../figures/report/pulse_level_variables_unmerged_gbweighted_full_page1.pdf)
-- [GB-weighted event aggregates page 1](../figures/report/event_level_aggregates_unmerged_gbweighted_full_page1.pdf)
+The reweighted pulse and event plots then test whether fixing direction also
+helps the other variables:
+[pulse page 1](../figures/report/pulse_level_variables_unmerged_gbweighted_full_page1.pdf),
+[pulse page 2](../figures/report/pulse_level_variables_unmerged_gbweighted_full_page2.pdf),
+[event page 1](../figures/report/event_level_aggregates_unmerged_gbweighted_full_page1.pdf),
+[event page 2](../figures/report/event_level_aggregates_unmerged_gbweighted_full_page2.pdf),
+and [event page 3](../figures/report/event_level_aggregates_unmerged_gbweighted_full_page3.pdf).
 
-The benchmark improves to:
+The benchmark improves, but the samples remain strongly separable:
 
 | Class | AUC after angular GB reweighting |
 |---|---:|
 | Stopped | 0.9688 |
 | Through-going | 0.9935 |
 
-Relevant code:
-
-- [direction transformer training/inference](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/)
-- [direction documentation plots](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/plot_direction_transformer_documentation.py)
-- [GB reweighter](../analysis/MC_vs_BS_analysis/GBreweighting/fit_GBreweighter_hlc_rde_unmerged_2M.py)
-- [clean GB reweighter version](../analysis/MC_vs_BS_analysis/GBreweighting/fit_GBreweighter_hlc_rde_unmerged_2M_clean.py)
-
 ## Pulse Merging
 
-The angular correction leaves most of the data-MC gap intact. The next
-correction targets the low-charge HLC excess in data. The `PulseMerger`
-algorithm merges pulses below `0.3 PE` into the nearest above-threshold pulse on
-the same DOM, preserving charge through a charge-weighted time average.
+The angular correction leaves much of the data-MC gap intact, and the
+low-charge pulse behavior remains suspicious. The next correction applies
+`PulseMerger`, which merges HLC pulses below `0.3 PE` into the nearest
+above-threshold pulse on the same DOM while preserving charge through a
+charge-weighted time average.
 
-Key figures:
+The algorithm is implemented in
+[pulse_merger.py](../analysis/MC_vs_BS_analysis/GBreweighting/pulse_merger.py).
+The [single-DOM pulse-merger example](../figures/report/small_pulses_through_run136141_event242722_string61_dom3_final_legend_default_up.pdf),
+created by
+[make_small_pulse_merge_plot.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plots/small_pulses/make_small_pulse_merge_plot.py),
+shows exactly what the merge does to a concrete DOM signal. The broader
+HLC/SLC charge and multiplicity checks are shown in
+[mc_data_charge_hlc_slc.pdf](../figures/report/mc_data_charge_hlc_slc.pdf)
+and [pulses_per_dom.pdf](../figures/report/pulses_per_dom.pdf), produced by the
+[pulse merging plot scripts](../analysis/MC_vs_BS_analysis/GBreweighting/validation/data_parquet_v2/pulse_merging_plots/).
 
-- [Pulse merger example](../figures/report/small_pulses_through_run136141_event242722_string61_dom3_final_legend_default_up.pdf)
-- [HLC/SLC charge distributions](../figures/report/mc_data_charge_hlc_slc.pdf)
-- [Pulses per DOM](../figures/report/pulses_per_dom.pdf)
-
-The benchmark improves to:
+After pulse merging, the benchmark becomes:
 
 | Class | AUC after pulse merging |
 |---|---:|
 | Stopped | 0.9583 |
 | Through-going | 0.9892 |
 
-Relevant code:
-
-- [pulse_merger.py](../analysis/MC_vs_BS_analysis/GBreweighting/pulse_merger.py)
-- [pulse merging plot scripts](../analysis/MC_vs_BS_analysis/GBreweighting/validation/data_parquet_v2/pulse_merging_plots/)
-- [small pulse merge plot](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plots/small_pulses/make_small_pulse_merge_plot.py)
-
 ## Feature Importance And HLC Re-Labelling
 
-Permutation feature importance shows that `hlc` is the strongest pulse-level
-carrier of the remaining data-MC separability. The project then trains a model
-on real data to recognize HLC-like pulses from the other pulse features. The
-most HLC-like simulated SLC pulses are flipped to HLC until the MC HLC-fraction
-distribution best matches data.
+At this point the obvious corrections have helped but not solved the problem.
+The next step asks the trained MC-vs-data classifier what it is using. The
+permutation-importance scripts shuffle one pulse feature at a time and measure
+the AUC drop. The result is clear: the `hlc` flag is the strongest remaining
+pulse-level handle in both stopped and through-going samples.
 
-Key figures:
+The feature-importance calculation is implemented in
+[eval_transformer_perm_compare_hlcflip.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/eval_transformer_perm_compare_hlcflip.py)
+and
+[eval_permutation_importance.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/eval_permutation_importance.py),
+with summary files in
+[transformer_hlcflip_study](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plots/transformer_hlcflip_study/).
 
-- [HLC flip rate sweep](../figures/report/hlc_flip_rate_sweep_merged_v2_stopped_through_side_by_side_0_to_10p0_step0p5.pdf)
-- [HLC fraction after best flip](../figures/report/hlc_frac_mc_vs_data_merged_v2_stopped_through_best_transformer_flip_side_by_side.pdf)
+The correction trains an HLC/SLC model on real data and applies it to MC. The
+most HLC-like simulated SLC pulses are flipped until the event-level HLC
+fraction best matches data. The sweep is performed by
+[run_hlc_flip_sweep_merged_v2_all.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/run_hlc_flip_sweep_merged_v2_all.py)
+and visualized in
+[hlc_flip_rate_sweep_merged_v2_stopped_through_side_by_side_0_to_10p0_step0p5.pdf](../figures/report/hlc_flip_rate_sweep_merged_v2_stopped_through_side_by_side_0_to_10p0_step0p5.pdf).
+The final chosen flip is applied by
+[apply_transformer_hlc_best_flip_parquets.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/apply_transformer_hlc_best_flip_parquets.py),
+and the resulting HLC-fraction agreement is shown in
+[hlc_frac_mc_vs_data_merged_v2_stopped_through_best_transformer_flip_side_by_side.pdf](../figures/report/hlc_frac_mc_vs_data_merged_v2_stopped_through_best_transformer_flip_side_by_side.pdf).
 
-The benchmark improves to:
+This is the largest single improvement:
 
 | Class | AUC after HLC re-labelling |
 |---|---:|
 | Stopped | 0.9281 |
 | Through-going | 0.9851 |
 
-Relevant code:
-
-- [permutation importance](../analysis/MC_vs_BS_analysis/GBreweighting/validation/eval_transformer_perm_compare_hlcflip.py)
-- [Data_vs_MC_new permutation script](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/eval_permutation_importance.py)
-- [HLC flip sweep](../analysis/MC_vs_BS_analysis/GBreweighting/validation/run_hlc_flip_sweep_merged_v2_all.py)
-- [plot HLC flip sweep](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_hlc_flip_sweep_merged_v2_side_by_side.py)
-- [apply best HLC flip](../analysis/MC_vs_BS_analysis/GBreweighting/validation/apply_transformer_hlc_best_flip_parquets.py)
-
 ## Charge-Time And Afterpulse Search
 
-Real PMTs can produce afterpulses, and those are not simulated in the same way
-in MC. The report therefore inspects the `charge` vs `dom_time` plane after the
-main corrections. The expected isolated delayed low-charge island is not
-clearly found in the pulse-level representation.
+The waveform example near the beginning shows delayed small pulses after a main
+signal, so the report checks whether an afterpulse-like structure appears in
+the corrected `charge` vs `dom_time` plane. The plots do not reveal a clean
+isolated delayed low-charge island in the pulse-level representation.
 
-Key figures:
-
-- [Stopped MC charge-time](../figures/report/afterpulse_stopped_mc_transformer_hlcflip_best.pdf)
-- [Stopped data charge-time](../figures/report/afterpulse_stopped_data_transformer_hlcflip_best.pdf)
-- [Stopped residual](../figures/report/afterpulse_stopped_mc_over_data_transformer_hlcflip_best.pdf)
-- [Through-going MC charge-time](../figures/report/afterpulse_through_mc_transformer_hlcflip_best.pdf)
-- [Through-going data charge-time](../figures/report/afterpulse_through_data_transformer_hlcflip_best.pdf)
-- [Through-going residual](../figures/report/afterpulse_through_mc_over_data_transformer_hlcflip_best.pdf)
-
-Relevant code:
-
-- [plot_afterpulse_a4_transformer_hlcflip_best.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_a4_transformer_hlcflip_best.py)
-- [afterpulse master plot](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_master.py)
-- [afterpulse summaries](../analysis/MC_vs_BS_analysis/GBreweighting/validation/afterpulse_master_summary.txt)
-- [waveform demo](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/)
+The charge-time figures are made by
+[plot_afterpulse_a4_transformer_hlcflip_best.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_a4_transformer_hlcflip_best.py),
+with additional checks in
+[plot_afterpulse_master.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_master.py)
+and [afterpulse_master_summary.txt](../analysis/MC_vs_BS_analysis/GBreweighting/validation/afterpulse_master_summary.txt).
+The six report panels compare MC, data, and residuals for stopped and
+through-going events:
+[stopped MC](../figures/report/afterpulse_stopped_mc_transformer_hlcflip_best.pdf),
+[stopped data](../figures/report/afterpulse_stopped_data_transformer_hlcflip_best.pdf),
+[stopped residual](../figures/report/afterpulse_stopped_mc_over_data_transformer_hlcflip_best.pdf),
+[through MC](../figures/report/afterpulse_through_mc_transformer_hlcflip_best.pdf),
+[through data](../figures/report/afterpulse_through_data_transformer_hlcflip_best.pdf),
+and [through residual](../figures/report/afterpulse_through_mc_over_data_transformer_hlcflip_best.pdf).
 
 ## vMF Uncertainty And Low-`kappa` Events
 
 The final diagnostic uses a von Mises-Fisher direction head. Instead of only
-predicting a point direction, the model predicts a concentration parameter
+predicting a point direction, the model also predicts a concentration parameter
 `kappa`, which behaves like a learned per-event confidence. Low-`kappa` MC
-events reveal a population where the direction model collapses toward the
-vertical. Removing `kappa < 10` events from both samples gives the final stage.
+events reveal a population where the direction prediction collapses toward the
+vertical.
 
-Key figures:
+The vMF model code is in
+[direction_transformer_vmf_final_hlcflip](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_vmf_final_hlcflip/)
+and [vmf_code_bundle](../analysis/MC_vs_BS_analysis/GBreweighting/validation/vmf_code_bundle/).
+The concept is introduced with
+[vmf_sphere.pdf](../figures/report/vmf_sphere.pdf). Training and uncertainty
+behavior are shown in
+[vmf_training_history_loss_opening_kappa.pdf](../figures/report/vmf_training_history_loss_opening_kappa.pdf),
+the MC/data `kappa` comparison in
+[vmf_kappa_mc_data_stopped_through_side_by_side.pdf](../figures/report/vmf_kappa_mc_data_stopped_through_side_by_side.pdf),
+and the pole-collapse diagnostic in
+[vmf_pole_collapse_evidence.pdf](../figures/report/vmf_pole_collapse_evidence.pdf).
+The low-`kappa` selection is built by
+[make_kappa10_cut_parquets.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_kappa10_cut_parquets.py),
+and the median MC split table is generated by
+[make_mc_kappa_split_table.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_mc_kappa_split_table.py).
 
-- [vMF sphere schematic](../figures/report/vmf_sphere.pdf)
-- [vMF training history](../figures/report/vmf_training_history_loss_opening_kappa.pdf)
-- [MC/data kappa distributions](../figures/report/vmf_kappa_mc_data_stopped_through_side_by_side.pdf)
-- [Pole-collapse evidence](../figures/report/vmf_pole_collapse_evidence.pdf)
-
-The final benchmark is:
+After removing `kappa < 10` events from both samples, the final benchmark is:
 
 | Class | Final AUC |
 |---|---:|
 | Stopped | 0.9218 |
 | Through-going | 0.9848 |
 
-Relevant code:
-
-- [vMF direction model](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_vmf_final_hlcflip/)
-- [vMF code bundle](../analysis/MC_vs_BS_analysis/GBreweighting/validation/vmf_code_bundle/)
-- [plot_vmf_uncertainty_final_hlcflip.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_vmf_uncertainty_final_hlcflip.py)
-- [plot_vmf_pole_collapse_evidence.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_vmf_pole_collapse_evidence.py)
-- [make_kappa10_cut_parquets.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_kappa10_cut_parquets.py)
-
 ## Final Comparison
 
-The AUC values fall at every correction stage, but remain well above chance,
-especially for through-going events. The ROC curves show that the samples
-remain rank-separable. The logit distributions show a softer story: the
-classifier becomes less confident, especially for stopped events, even though
-it can still distinguish the samples.
+The final comparison collects every correction stage. The
+[five-stage ROC overlay](../figures/report/five_stage_logit_roc_overlay_combined.pdf)
+shows that the samples remain rank-separable. The
+[five-stage logit catalog](../figures/report/logit_catalog_common_xlim.pdf)
+shows the other side: the classifier becomes less confident, especially for
+stopped events, even though it can still distinguish MC from data.
 
-Key figures:
+Both figures are produced from staged logits built by
+[build_stage_test_logits.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/build_stage_test_logits.py).
+The ROC plot comes from
+[plot_stage_logit_roc_overlay.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_roc_overlay.py),
+and the logit catalog from
+[plot_stage_logit_catalog.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_catalog.py).
 
-- [Five-stage ROC overlay](../figures/report/five_stage_logit_roc_overlay_combined.pdf)
-- [Five-stage logit catalog](../figures/report/logit_catalog_common_xlim.pdf)
+## Remaining Questions
 
-Relevant code:
+The final AUC values are still far above chance, so the remaining separation is
+scientifically meaningful. The report highlights several likely places to look
+next. The permutation study ranks `dom_time` immediately behind `hlc`, and the
+baseline plots show a later data tail that none of the corrections directly
+targets. The horizontal DOM coordinates also retain separation, which could
+point to surface-entry or detector-entry differences between real and simulated
+muons. Multi-pulse DOM behavior remains imperfectly modelled, and the
+charge-time plots do not prove that afterpulses are absent; they only show that
+this broad pulse-level selection does not isolate a clean delayed low-charge
+population.
 
-- [build_stage_test_logits.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/build_stage_test_logits.py)
-- [plot_stage_logit_roc_overlay.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_roc_overlay.py)
-- [plot_stage_logit_catalog.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_catalog.py)
+Two selection assumptions also remain important. The real burnsample muons are
+selected by an external GNN classifier, while the stopped/through split used in
+this project is trained on MC. If either selection behaves differently on real
+data than on simulation, some of the residual MC-vs-data separation could come
+from the sample definition rather than from detector modelling alone.
 
 ## Conclusion
 
