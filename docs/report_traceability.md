@@ -1,18 +1,17 @@
 # Report Traceability
 
-This document audits the repository against the local report
-`/groups/icecube/holgerkc/final/main.pdf`: report figures, numerical tables,
+This document audits repository coverage of project figures, numerical tables,
 and the code or source behind each result.
 
 ## Coverage Summary
 
 | Item | Status |
 |---|---|
-| Report figures used by `main.pdf` | 41/41 included in [figures/report](../figures/report/) |
-| Report figures shown or linked from README | 41/41 |
+| Project figures | 41/41 included in [figures/report](../figures/report/) |
+| Project figures shown or linked from README | 41/41 |
 | Figure-to-code/source mapping | 41/41 in [figure_index.md](figure_index.md) |
-| Report tables and numerical result tables | 6/6 mapped below |
-| Analysis code copied from `Thesis_Analysis` | Included under [analysis](../analysis/) |
+| Project tables and numerical result tables | 6/6 mapped below |
+| Analysis code copied from the original workspace | Included under [analysis](../analysis/) |
 | Raw data, parquets, databases, checkpoints, logs | Intentionally excluded |
 
 ## What Counts As Code-Backed
@@ -49,9 +48,9 @@ Those are marked as reference/source material.
 | vMF uncertainty and low-`kappa` cut | [README section 10](../README.md#10-vmf-uncertainty-and-final-diagnostic), [code map section 10](code_map.md#10-vmf-direction-uncertainty-and-low-kappa-cut) | [direction_transformer_vmf_final_hlcflip](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_vmf_final_hlcflip/), [plot_vmf_uncertainty_final_hlcflip.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_vmf_uncertainty_final_hlcflip.py), [make_mc_kappa_split_table.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_mc_kappa_split_table.py) |
 | Final ROC and logit interpretation | [README top](../README.md), [README section 11](../README.md#11-final-benchmark-and-interpretation), [code map section 11](code_map.md#11-final-stage-roc-and-logit-comparison) | [build_stage_test_logits.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/build_stage_test_logits.py), [plot_stage_logit_roc_overlay.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_roc_overlay.py), [plot_stage_logit_catalog.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_catalog.py), [roc_overlay_manifest.json](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/roc_overlay_manifest.json) |
 
-## Report Tables And Numerical Results
+## Tables And Numerical Results
 
-| Report table/result | Role in report | Code or source |
+| Table/result | Role in the project | Code or source |
 |---|---|---|
 | HLC/SLC compact-summary table | Explains what is stored for HLC and SLC DOM hits | Reference/example values from detector readout discussion; waveform example code in [waveform_demo](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/) |
 | Pulse-level data-format table | Defines the pulse variables used by the models | Dataset construction/export code in [scripts](../analysis/MC_vs_BS_analysis/scripts/) and [validation utilities](../analysis/MC_vs_BS_analysis/GBreweighting/validation/) |
@@ -62,8 +61,8 @@ Those are marked as reference/source material.
 
 ## Figure Audit
 
-The report contains 41 unique visual files referenced through `\includegraphics`.
-The repository contains exactly those 41 visual files in [figures/report](../figures/report/).
+The project uses 41 unique visual files. The repository contains exactly those
+41 visual files in [figures/report](../figures/report/).
 
 For the full per-figure mapping, see [figure_index.md](figure_index.md).
 
@@ -88,7 +87,7 @@ Excluded:
 - generated parquet/CSV/SQLite data products,
 - model checkpoints and weights,
 - logs and cache files,
-- the local LaTeX report source/build products.
+- full-report source/build products.
 
 The repository contains the code and provenance needed to audit the project;
 rerunning the full analysis requires access to the local data products and

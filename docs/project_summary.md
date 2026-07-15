@@ -1,9 +1,9 @@
 # Project Summary
 
 Simulated Muon Gun atmospheric muons are compared with real 2021 burnsample
-muons using the same IceCube pulse representation. The report version is
-`/groups/icecube/holgerkc/final/main.pdf`; the analysis code comes from
-`/groups/icecube/holgerkc/Thesis_Analysis`.
+muons using the same IceCube pulse representation. This summary follows the
+Master Thesis Preparation Project and links the analysis code included in this
+repository.
 
 ## Motivation
 

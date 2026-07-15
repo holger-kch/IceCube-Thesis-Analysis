@@ -5,9 +5,9 @@
 Niels Bohr Institute. Repository: [IceCube-Thesis-Analysis](https://github.com/holger-kch/IceCube-Thesis-Analysis).
 
 This project compares simulated Muon Gun atmospheric muons with real 2021
-burnsample atmospheric muons in IceCube. It follows the report written in
-`/groups/icecube/holgerkc/final/main.tex` and the analysis code developed in
-`/groups/icecube/holgerkc/Thesis_Analysis`.
+burnsample atmospheric muons in IceCube. The repository contains the project
+story, the report figures, and the copied analysis code needed to trace each
+result.
 
 The central question is:
 
@@ -176,7 +176,7 @@ The tracked analysis tree contains Python source, Slurm scripts, notebooks
 with outputs cleared, configs, model metrics, and small text summaries. It
 does not contain raw detector data, generated parquet tables, SQLite databases,
 CSV exports, NumPy arrays, pickle files, model checkpoints, logs, or the local
-compiled LaTeX report.
+full-report build products.
 
 ## Report Navigation
 
@@ -501,9 +501,9 @@ classifier has become less confident. The remaining threads are concrete:
 
 ## Figure Coverage
 
-All 41 visual figures used by `main.pdf` are represented in this README. The
-PDF figures have PNG previews in `figures/report_previews/`, and the original
-files remain linked. The compact figure-to-code mapping is in
+All 41 project figures are represented in this README. PDF figures have PNG
+previews in `figures/report_previews/`, and the original files remain linked.
+The compact figure-to-code mapping is in
 [docs/figure_index.md](docs/figure_index.md).
 
 ## What Is Not Here
@@ -514,8 +514,7 @@ The repository intentionally excludes raw data and heavy generated products:
   data.
 - Model checkpoints and exported weights.
 - Slurm logs, cache directories, and local notebook checkpoints.
-- The local LaTeX report source and compiled report products from
-  `/groups/icecube/holgerkc/final`.
+- Full-report source and build products.
 
 The report figures are kept so the analysis can be inspected without
 regenerating every cluster job.

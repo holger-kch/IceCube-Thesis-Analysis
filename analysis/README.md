@@ -1,8 +1,7 @@
 # Analysis Source Tree
 
-This directory is a filtered source mirror of
-`/groups/icecube/holgerkc/Thesis_Analysis` for the Master Thesis Preparation
-Project.
+This directory is a filtered source mirror of the original analysis workspace
+for the Master Thesis Preparation Project.
 
 It keeps the Python code, notebooks, Slurm scripts, configs, metrics, and small
 summaries needed to trace the figures and results. Databases, parquet tables,

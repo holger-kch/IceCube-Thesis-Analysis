@@ -9,10 +9,9 @@ corrections that are layered on top of it. Use it when a README section has
 made the purpose clear and you want the relevant source tree without searching
 through the full project.
 
-The source tree is a filtered mirror of
-`/groups/icecube/holgerkc/Thesis_Analysis`: code, notebooks with outputs
-cleared, Slurm scripts, configs, metrics, and text summaries are included; raw
-data products and checkpoints are not.
+The source tree is a filtered mirror of the original analysis workspace: code,
+notebooks with outputs cleared, Slurm scripts, configs, metrics, and text
+summaries are included; raw data products and checkpoints are not.
 
 ## 0. Data Preparation And Shared Inputs
 

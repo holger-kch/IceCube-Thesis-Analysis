@@ -13,7 +13,7 @@ The repository intentionally includes:
 - YAML configs and small JSON training/metric summaries.
 - Notebooks with outputs cleared.
 - Small text summaries and small TeX tables used by the analysis.
-- The visual figures used by `/groups/icecube/holgerkc/final/main.pdf`.
+- Project result and schematic figures.
 - PNG previews of PDF figures for GitHub browsing.
 
 The report figures are included so the results can be inspected without
@@ -31,7 +31,7 @@ The following are intentionally not tracked:
 - Model checkpoints and exported model weights.
 - Slurm `.out`/`.err` files and log directories.
 - Cache directories.
-- The compiled LaTeX report and LaTeX build artifacts.
+- Full-report source and build artifacts.
 
 This means many scripts will not run directly after cloning unless the original
 cluster data products are present at the expected paths.
