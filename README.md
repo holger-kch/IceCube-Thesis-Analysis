@@ -58,6 +58,9 @@ corrections. In other words: the gap is narrowed, not solved.
 - Open [docs/report_traceability.md](docs/report_traceability.md) to audit
   which report sections, figures, tables, and numerical results are backed by
   which code or source.
+- Open [docs/analysis_runbook.md](docs/analysis_runbook.md) when you want the
+  practical run order: stage purpose, main scripts, required inputs, and
+  generated outputs.
 - Open [docs/code_map.md](docs/code_map.md) to navigate the analysis tree by
   scientific task.
 - Open [docs/reproduction_notes.md](docs/reproduction_notes.md) for what is
@@ -114,6 +117,8 @@ The analysis proceeds as follows:
 ├── docs/
 │   ├── project_summary.md
 │   ├── figure_index.md
+│   ├── report_traceability.md
+│   ├── analysis_runbook.md
 │   ├── code_map.md
 │   └── reproduction_notes.md
 └── figures/

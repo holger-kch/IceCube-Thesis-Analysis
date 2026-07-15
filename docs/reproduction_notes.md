@@ -14,7 +14,7 @@ The repository intentionally includes:
 - YAML configs and small JSON training/metric summaries.
 - Notebooks with outputs cleared.
 - Small text summaries and small TeX tables used by the analysis.
-- All figure assets from `/groups/icecube/holgerkc/final/figures`.
+- The visual figures used by `/groups/icecube/holgerkc/final/main.pdf`.
 - PNG previews of PDF figures for GitHub browsing.
 
 The included figures are generated outputs, but they are part of the readable
@@ -73,7 +73,8 @@ A full rerun follows the report order:
 13. Apply the `kappa < 10` selection and retrain the final MC-vs-data models.
 14. Build the five-stage ROC and logit comparison.
 
-Use [code_map.md](code_map.md) for stage-to-code navigation and
+Use [analysis_runbook.md](analysis_runbook.md) for the practical stage order,
+[code_map.md](code_map.md) for stage-to-code navigation, and
 [figure_index.md](figure_index.md) for figure-to-code navigation.
 
 ## Data Policy
