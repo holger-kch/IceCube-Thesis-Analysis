@@ -29,6 +29,6 @@ are excluded.
 - [Project summary](../docs/project_summary.md)
 - [Code map](../docs/code_map.md)
 - [Figure index](../docs/figure_index.md)
-- [Report traceability](../docs/report_traceability.md)
+- [Project traceability](../docs/project_traceability.md)
 - [Analysis runbook](../docs/analysis_runbook.md)
 - [Reproduction notes](../docs/reproduction_notes.md)

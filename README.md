@@ -2,11 +2,11 @@
 
 ## Narrowing the Gap Between Simulation and Real Data in IceCube
 
-Niels Bohr Institute. Repository: [IceCube-Thesis-Analysis](https://github.com/holger-kch/IceCube-Thesis-Analysis).
+Niels Bohr Institute. Repository: [IceCube-Master-Thesis-Preparation-Project](https://github.com/holger-kch/IceCube-Master-Thesis-Preparation-Project).
 
 This project compares simulated Muon Gun atmospheric muons with real 2021
 burnsample atmospheric muons in IceCube. The repository contains the project
-story, the report figures, and the copied analysis code needed to trace each
+story, the project figures, and the copied analysis code needed to trace each
 result.
 
 The central question is:
@@ -60,8 +60,8 @@ and HLC/SLC status.
 | `event_no` | `0` | Internal event index tying pulses to the same event. |
 | `string`, `dom_number` | `1`, `23` | DOM identifier. |
 
-The full pulse-format table in the report lists this same example row. The
-code that builds and loads the pulse-level rows lives in
+This pulse-format example is the data representation used throughout the
+project. The code that builds and loads the pulse-level rows lives in
 [analysis/MC_vs_BS_analysis/scripts](analysis/MC_vs_BS_analysis/scripts/) and
 [mc_vs_data_parquet_dataset.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/mc_vs_data_parquet_dataset.py).
 
@@ -98,11 +98,11 @@ corrections. In other words: the gap is narrowed, not solved.
 
 - Start with this README for the story and the central figures.
 - Open [docs/project_summary.md](docs/project_summary.md) for a shorter
-  report-style walkthrough.
+  project walkthrough.
 - Open [docs/figure_index.md](docs/figure_index.md) when you want figure to
   code provenance in table form.
-- Open [docs/report_traceability.md](docs/report_traceability.md) to audit
-  which report sections, figures, tables, and numerical results are backed by
+- Open [docs/project_traceability.md](docs/project_traceability.md) to audit
+  which project sections, figures, tables, and numerical results are backed by
   which code or source.
 - Open [docs/analysis_runbook.md](docs/analysis_runbook.md) when you want the
   practical run order: stage purpose, main scripts, required inputs, and
@@ -163,7 +163,7 @@ The analysis proceeds as follows:
 ├── docs/
 │   ├── project_summary.md
 │   ├── figure_index.md
-│   ├── report_traceability.md
+│   ├── project_traceability.md
 │   ├── analysis_runbook.md
 │   ├── code_map.md
 │   └── reproduction_notes.md
@@ -176,9 +176,9 @@ The tracked analysis tree contains Python source, Slurm scripts, notebooks
 with outputs cleared, configs, model metrics, and small text summaries. It
 does not contain raw detector data, generated parquet tables, SQLite databases,
 CSV exports, NumPy arrays, pickle files, model checkpoints, logs, or the local
-full-report build products.
+full write-up source or build products.
 
-## Report Navigation
+## Project Walkthrough
 
 The analysis starts with the detector readout and pulse representation, then
 builds the stopped/through-going split, the MC-vs-data benchmark, the
@@ -210,10 +210,10 @@ and DOM efficiency.
 
 | Figure | What it shows | Code/source |
 |---|---|---|
-| <img src="figures/report/icecube.png" alt="IceCube detector schematic" width="260"><br>[icecube.png](figures/report/icecube.png) | Places the analysis in the IceCube detector geometry: strings, DOMs, DeepCore, and IceTop. | External/reference detector schematic used in the report. |
+| <img src="figures/report/icecube.png" alt="IceCube detector schematic" width="260"><br>[icecube.png](figures/report/icecube.png) | Places the analysis in the IceCube detector geometry: strings, DOMs, DeepCore, and IceTop. | External/reference detector schematic. |
 | <img src="figures/report_previews/shrenkov.png" alt="Cherenkov radiation schematic" width="260"><br>[shrenkov.pdf](figures/report/shrenkov.pdf) | Explains why charged particles crossing the ice produce the light recorded by DOMs. | Schematic asset. |
 | <img src="figures/report_previews/plot_run126491_event30343391_DOM83-31-0.png" alt="HLC waveform example" width="260"><br>[plot_run126491_event30343391_DOM83-31-0.pdf](figures/report/plot_run126491_event30343391_DOM83-31-0.pdf) | Shows the detailed ATWD/fADC waveform behind one real HLC hit, including later small pulses. | [waveform_demo](analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/) |
-| <img src="figures/report/icecube_events.png" alt="IceCube event topology examples" width="260"><br>[icecube_events.png](figures/report/icecube_events.png) | Shows the pulse-level appearance of track, cascade, and double-bang event types. | External/reference event-type figure used in the report. |
+| <img src="figures/report/icecube_events.png" alt="IceCube event topology examples" width="260"><br>[icecube_events.png](figures/report/icecube_events.png) | Shows the pulse-level appearance of track, cascade, and double-bang event types. | External/reference event-type figure. |
 | <img src="figures/report_previews/event_display_through_stopped.png" alt="Stopped and through-going muon event display" width="260"><br>[event_display_through_stopped.pdf](figures/report/event_display_through_stopped.pdf) | Motivates why stopped and through-going atmospheric muons are treated as separate classes. | [plot_event_display_through_stopped.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_event_display_through_stopped.py), [pulse_event_display.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/pulse_event_display.py) |
 
 </details>
@@ -237,7 +237,7 @@ benchmarking, and HLC re-labelling.
 |---|---|---|
 | <img src="figures/report_previews/decision_tree.png" alt="Decision tree schematic" width="260"><br>[decision_tree.pdf](figures/report/decision_tree.pdf) | Introduces the threshold-cut logic behind tree models. | [make_ch3_figures.py](figures/report/make_ch3_figures.py) |
 | <img src="figures/report_previews/bdt_schematic.png" alt="Boosted decision tree schematic" width="260"><br>[bdt_schematic.pdf](figures/report/bdt_schematic.pdf) | Explains why many shallow trees can form a stronger boosted model. | [make_ch3_figures.py](figures/report/make_ch3_figures.py) |
-| <img src="figures/report_previews/transformer_architecture.png" alt="Transformer architecture used in the report" width="260"><br>[transformer_architecture.pdf](figures/report/transformer_architecture.pdf) | Shows the event model used repeatedly: pulse tokens, embeddings, transformer blocks, pooling, and prediction head. | [make_ch3_figures.py](figures/report/make_ch3_figures.py) |
+| <img src="figures/report_previews/transformer_architecture.png" alt="Transformer architecture used in the project" width="260"><br>[transformer_architecture.pdf](figures/report/transformer_architecture.pdf) | Shows the event model used repeatedly: pulse tokens, embeddings, transformer blocks, pooling, and prediction head. | [make_ch3_figures.py](figures/report/make_ch3_figures.py) |
 
 </details>
 
@@ -514,9 +514,9 @@ The repository intentionally excludes raw data and heavy generated products:
   data.
 - Model checkpoints and exported weights.
 - Slurm logs, cache directories, and local notebook checkpoints.
-- Full-report source and build products.
+- Full write-up source and build products.
 
-The report figures are kept so the analysis can be inspected without
+The project figures are kept so the analysis can be inspected without
 regenerating every cluster job.
 
 ## AI Assistance Note

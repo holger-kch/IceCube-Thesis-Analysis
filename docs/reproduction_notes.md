@@ -1,7 +1,7 @@
 # Reproduction Notes
 
 The analysis was developed on the NBI/HEP IceCube cluster. The repository keeps
-the report logic, figures, scripts, configs, and metrics, but a full rerun
+the project logic, figures, scripts, configs, and metrics, but a full rerun
 still depends on the local IceCube data products and cluster environment.
 
 ## Included
@@ -16,7 +16,7 @@ The repository intentionally includes:
 - Project result and schematic figures.
 - PNG previews of PDF figures for GitHub browsing.
 
-The report figures are included so the results can be inspected without
+The project figures are included so the results can be inspected without
 regenerating every cluster job.
 
 ## Excluded
@@ -31,7 +31,7 @@ The following are intentionally not tracked:
 - Model checkpoints and exported model weights.
 - Slurm `.out`/`.err` files and log directories.
 - Cache directories.
-- Full-report source and build artifacts.
+- Full write-up source and build artifacts.
 
 This means many scripts will not run directly after cloning unless the original
 cluster data products are present at the expected paths.
@@ -54,7 +54,7 @@ must be adapted.
 
 ## Practical Run Order
 
-A full rerun follows the report order:
+A full rerun follows the analysis order:
 
 1. Build or locate the MC and burnsample pulse/event tables.
 2. Train the stopped/through-going classifier and run inference on MC/data.
@@ -79,5 +79,5 @@ Use [analysis_runbook.md](analysis_runbook.md) for the practical stage order,
 
 The repository is designed so that `git add -A` should not accidentally track
 raw data or model weights. The `.gitignore` blocks the relevant file extensions
-globally while still allowing small metrics/config summaries and the report
+globally while still allowing small metrics/config summaries and the project
 figures.

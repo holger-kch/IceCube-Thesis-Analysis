@@ -1,4 +1,4 @@
-# Report Traceability
+# Project Traceability
 
 This document audits repository coverage of project figures, numerical tables,
 and the code or source behind each result.
@@ -16,11 +16,11 @@ and the code or source behind each result.
 
 ## What Counts As Code-Backed
 
-Most analysis statements in the report are backed by Python scripts, Slurm
+Most analysis statements in the project are backed by Python scripts, Slurm
 drivers, metrics JSON files, text summaries, or generated figure files. Those
 are included in this repository.
 
-Some report material is not code-generated:
+Some project material is not code-generated:
 
 - detector and event-type reference images from IceCube/literature,
 - trigger and detector-background tables adapted from references,
@@ -29,9 +29,9 @@ Some report material is not code-generated:
 
 Those are marked as reference/source material.
 
-## Report Flow To Repository Flow
+## Project Flow To Repository Flow
 
-| Report part | GitHub location | Code or source backing |
+| Project part | GitHub location | Code or source backing |
 |---|---|---|
 | Abstract and introduction | [README](../README.md), [project_summary.md](project_summary.md) | Summary of the analysis outputs listed below |
 | IceCube detector and DOM readout | [README section 2](../README.md#2-detector-dom-readout-and-pulse-level-events), [figure index](figure_index.md#detector-readout-and-ml-schematics) | Reference figures plus [waveform_demo](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/) |
@@ -54,7 +54,7 @@ Those are marked as reference/source material.
 |---|---|---|
 | HLC/SLC compact-summary table | Explains what is stored for HLC and SLC DOM hits | Reference/example values from detector readout discussion; waveform example code in [waveform_demo](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/) |
 | Pulse-level data-format table | Defines the pulse variables used by the models | Dataset construction/export code in [scripts](../analysis/MC_vs_BS_analysis/scripts/) and [validation utilities](../analysis/MC_vs_BS_analysis/GBreweighting/validation/) |
-| Trigger table | Provides detector-trigger background | Literature/reference table adapted in the report; not analysis-code generated |
+| Trigger table | Provides detector-trigger background | Literature/reference table; not analysis-code generated |
 | Permutation feature-importance table | Identifies `hlc` as the strongest residual pulse-level handle | [eval_transformer_perm_compare_hlcflip.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/eval_transformer_perm_compare_hlcflip.py), [eval_permutation_importance.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/eval_permutation_importance.py), [stopped summary](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plots/transformer_hlcflip_study/permutation_importance_stopped_merged_v2_finalweight.txt), [through-going summary](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plots/transformer_hlcflip_study/permutation_importance_through_merged_v2_finalweight.txt) |
 | MC `kappa < 10` split table | Shows median event properties for low- and high-`kappa` MC events | [make_mc_kappa_split_table.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_mc_kappa_split_table.py), [mc_kappa_split_table.tex](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plots/vmf_uncertainty_study/low_kappa_diagnostic/mc_kappa_split_table.tex) |
 | Final five-stage AUC table | Summarizes the benchmark MC-vs-data classifier at each correction stage | [roc_overlay_manifest.json](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/roc_overlay_manifest.json), [plot_stage_logit_roc_overlay.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_roc_overlay.py), stage metrics in [Data_vs_MC_new/results](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/results/) |
@@ -78,8 +78,8 @@ Included:
 - configs,
 - metrics JSON files,
 - small text summaries,
-- report figures and PDF previews,
-- documentation connecting report claims to code.
+- project figures and PDF previews,
+- documentation connecting project claims to code.
 
 Excluded:
 
@@ -87,7 +87,7 @@ Excluded:
 - generated parquet/CSV/SQLite data products,
 - model checkpoints and weights,
 - logs and cache files,
-- full-report source/build products.
+- full write-up source/build products.
 
 The repository contains the code and provenance needed to audit the project;
 rerunning the full analysis requires access to the local data products and

@@ -1,6 +1,6 @@
 # Code Map
 
-This map follows the report flow and points to the source files that implement
+This map follows the project flow and points to the source files that implement
 each analysis stage. For individual figures, use the [figure index](figure_index.md).
 
 The map is deliberately organized by scientific dependency: first shared
@@ -50,7 +50,7 @@ and earlier reconstruction experiments.
 - [Classifiers/Energy_recon/](../analysis/Classifiers/Energy_recon/)
 - [Classifiers/PID_Classifier/](../analysis/Classifiers/PID_Classifier/)
 
-The report itself mainly uses the direction transformer and validation models,
+The project mainly uses the direction transformer and validation models,
 but the surrounding code is kept because it shows the model lineage and related
 experiments.
 
@@ -68,7 +68,7 @@ classify real data against simulation.
 
 ## 4. Pulse-Level And Event-Level Distribution Figures
 
-These scripts generate the report figures comparing MC and data distributions,
+These scripts generate the project figures comparing MC and data distributions,
 both before and after angular reweighting.
 
 - [compare_weighted_mc_vs_data_parquet.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/compare_weighted_mc_vs_data_parquet.py)
@@ -80,7 +80,7 @@ both before and after angular reweighting.
 
 ## 5. Direction Reconstruction And Angular GB Reweighting
 
-The report uses a DOM-token transformer to reconstruct zenith/azimuth, then a
+The project uses a DOM-token transformer to reconstruct zenith/azimuth, then a
 gradient-boosted reweighter to match MC to data in reconstructed direction
 space.
 
@@ -132,7 +132,7 @@ flip, and plot the resulting HLC fraction agreement.
 ## 9. Charge-Time And Afterpulse Diagnostics
 
 These scripts look for afterpulse-like charge-time structures and preserve the
-waveform-level examples used in the report.
+waveform-level examples used in the project.
 
 - [plot_afterpulse_a4_transformer_hlcflip_best.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_a4_transformer_hlcflip_best.py)
 - [plot_afterpulse_master.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_master.py)
@@ -170,9 +170,9 @@ reweighting, pulse merging, HLC re-labelling, and `kappa < 10` removal.
 - [Data_vs_MC_new/plot_stage_logit_individuals.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_individuals.py)
 - [Data_vs_MC_new/roc_overlay_manifest.json](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/roc_overlay_manifest.json)
 
-## 12. Local Report Figure Scripts
+## 12. Project Figure Scripts
 
-The report figure folder itself includes scripts for schematic figures that are
-not part of the cluster analysis pipeline.
+The project figure folder itself includes scripts for schematic figures that
+are not part of the cluster analysis pipeline.
 
 - [figures/report/make_ch3_figures.py](../figures/report/make_ch3_figures.py)

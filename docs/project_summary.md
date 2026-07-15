@@ -191,8 +191,8 @@ This is the largest single improvement:
 ## Charge-Time And Afterpulse Search
 
 The waveform example near the beginning shows delayed small pulses after a main
-signal, so the report checks whether an afterpulse-like structure appears in
-the corrected `charge` vs `dom_time` plane. The plots do not reveal a clean
+signal, so the charge-time analysis checks whether an afterpulse-like structure
+appears in the corrected `charge` vs `dom_time` plane. The plots do not reveal a clean
 isolated delayed low-charge island in the pulse-level representation.
 
 The charge-time figures are made by
@@ -200,8 +200,8 @@ The charge-time figures are made by
 with additional checks in
 [plot_afterpulse_master.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_master.py)
 and [afterpulse_master_summary.txt](../analysis/MC_vs_BS_analysis/GBreweighting/validation/afterpulse_master_summary.txt).
-The six report panels compare MC, data, and residuals for stopped and
-through-going events:
+The six panels compare MC, data, and residuals for stopped and through-going
+events:
 [stopped MC](../figures/report/afterpulse_stopped_mc_transformer_hlcflip_best.pdf),
 [stopped data](../figures/report/afterpulse_stopped_data_transformer_hlcflip_best.pdf),
 [stopped residual](../figures/report/afterpulse_stopped_mc_over_data_transformer_hlcflip_best.pdf),

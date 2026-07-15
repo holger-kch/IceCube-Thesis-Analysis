@@ -1,7 +1,7 @@
 # Analysis Runbook
 
 This is the practical map of how the analysis was built. Each stage gives the
-code path, the required inputs, and the report output produced by that part of
+code path, the required inputs, and the project output produced by that part of
 the workflow.
 
 The repository does not include raw data, derived parquet tables, SQLite
@@ -38,7 +38,7 @@ data so later comparisons use the same stopped/through-going definition.
 - [run_inference.py](../analysis/ThroughOrStopped_muon/inference/run_inference.py)
 - [plot_stopped_transformer_documentation.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/stopped_transformer_documentation/plot_stopped_transformer_documentation.py)
 
-**How it appears in the report:**
+**Project output:**
 
 - [training_history.pdf](../figures/report/training_history.pdf)
 - [test_performance.pdf](../figures/report/test_performance.pdf)
@@ -55,7 +55,7 @@ muons are before any correction.
 - [validation/transformer](../analysis/MC_vs_BS_analysis/GBreweighting/validation/transformer/)
 - [Data_vs_MC_new/results](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/results/)
 
-**How it appears in the report:** this stage provides the baseline AUC row and
+**Project output:** this stage provides the baseline AUC row and
 the first entry in the staged logit/ROC comparison.
 
 ## Stage 3: Plot Baseline Distribution Differences
@@ -69,7 +69,7 @@ corrections.
 - [make_event_aggregate_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py)
 - [compare_weighted_mc_vs_data_parquet_nolog_unmerged.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/compare_weighted_mc_vs_data_parquet_nolog_unmerged.py)
 
-**How it appears in the report:**
+**Project output:**
 
 - [pulse_level_variables_unmerged_full_page1.pdf](../figures/report/pulse_level_variables_unmerged_full_page1.pdf)
 - [pulse_level_variables_unmerged_full_page2.pdf](../figures/report/pulse_level_variables_unmerged_full_page2.pdf)
@@ -89,7 +89,7 @@ space.
 - [plot_direction_transformer_documentation.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/plot_direction_transformer_documentation.py)
 - [fit_GBreweighter_hlc_rde_unmerged_2M.py](../analysis/MC_vs_BS_analysis/GBreweighting/fit_GBreweighter_hlc_rde_unmerged_2M.py)
 
-**How it appears in the report:**
+**Project output:**
 
 - [open_angle_performance.pdf](../figures/report/open_angle_performance.pdf)
 - [mc_data_zenith_azimuth_overlay.pdf](../figures/report/mc_data_zenith_azimuth_overlay.pdf)
@@ -109,7 +109,7 @@ pulses on the same DOM.
 - [pulse_merging_plots](../analysis/MC_vs_BS_analysis/GBreweighting/validation/data_parquet_v2/pulse_merging_plots/)
 - [small_pulses](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plots/small_pulses/)
 
-**How it appears in the report:**
+**Project output:**
 
 - [small_pulses_through_run136141_event242722_string61_dom3_final_legend_default_up.pdf](../figures/report/small_pulses_through_run136141_event242722_string61_dom3_final_legend_default_up.pdf)
 - [mc_data_charge_hlc_slc.pdf](../figures/report/mc_data_charge_hlc_slc.pdf)
@@ -127,7 +127,7 @@ the residual separation after pulse merging.
 - [permutation_importance_stopped_merged_v2_finalweight.txt](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plots/transformer_hlcflip_study/permutation_importance_stopped_merged_v2_finalweight.txt)
 - [permutation_importance_through_merged_v2_finalweight.txt](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plots/transformer_hlcflip_study/permutation_importance_through_merged_v2_finalweight.txt)
 
-**How it appears in the report:** this stage produces the permutation-importance
+**Project output:** this stage produces the permutation-importance
 table identifying `hlc` as the largest pulse-level handle.
 
 ## Stage 7: HLC Re-Labelling
@@ -144,7 +144,7 @@ data.
 - [plot_hlc_flip_sweep_merged_v2_side_by_side.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_hlc_flip_sweep_merged_v2_side_by_side.py)
 - [plot_hlc_frac_merged_v2_best_transformer_flip.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_hlc_frac_merged_v2_best_transformer_flip.py)
 
-**How it appears in the report:**
+**Project output:**
 
 - [hlc_flip_rate_sweep_merged_v2_stopped_through_side_by_side_0_to_10p0_step0p5.pdf](../figures/report/hlc_flip_rate_sweep_merged_v2_stopped_through_side_by_side_0_to_10p0_step0p5.pdf)
 - [hlc_frac_mc_vs_data_merged_v2_stopped_through_best_transformer_flip_side_by_side.pdf](../figures/report/hlc_frac_mc_vs_data_merged_v2_stopped_through_best_transformer_flip_side_by_side.pdf)
@@ -161,7 +161,7 @@ plane.
 - [afterpulse_master_summary.txt](../analysis/MC_vs_BS_analysis/GBreweighting/validation/afterpulse_master_summary.txt)
 - [waveform_demo](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/)
 
-**How it appears in the report:** this stage produces the six charge-time
+**Project output:** this stage produces the six charge-time
 MC/data/residual figures for stopped and through-going events.
 
 ## Stage 9: vMF Direction Uncertainty And Low-`kappa` Cut
@@ -179,7 +179,7 @@ the final diagnostic.
 - [make_mc_kappa_split_table.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_mc_kappa_split_table.py)
 - [make_kappa10_cut_parquets.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_kappa10_cut_parquets.py)
 
-**How it appears in the report:**
+**Project output:**
 
 - [vmf_training_history_loss_opening_kappa.pdf](../figures/report/vmf_training_history_loss_opening_kappa.pdf)
 - [vmf_kappa_mc_data_stopped_through_side_by_side.pdf](../figures/report/vmf_kappa_mc_data_stopped_through_side_by_side.pdf)
@@ -198,7 +198,7 @@ figures.
 - [plot_stage_logit_catalog.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_catalog.py)
 - [roc_overlay_manifest.json](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/roc_overlay_manifest.json)
 
-**How it appears in the report:**
+**Project output:**
 
 - [five_stage_logit_roc_overlay_combined.pdf](../figures/report/five_stage_logit_roc_overlay_combined.pdf)
 - [logit_catalog_common_xlim.pdf](../figures/report/logit_catalog_common_xlim.pdf)
@@ -208,5 +208,5 @@ figures.
 
 For every result figure, start in [figure_index.md](figure_index.md). For every
 analysis stage, start in this runbook or [code_map.md](code_map.md). For table
-and figure coverage against the report, use
-[report_traceability.md](report_traceability.md).
+and figure coverage for the project, use
+[project_traceability.md](project_traceability.md).

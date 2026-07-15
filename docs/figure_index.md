@@ -1,6 +1,6 @@
 # Figure Index
 
-This index maps each report figure in `figures/report/` to the script,
+This index maps each project figure in `figures/report/` to the script,
 analysis directory, or reference source behind it.
 
 For PDF figures, `figures/report_previews/` contains PNG previews for GitHub
@@ -10,9 +10,9 @@ browsing. The original PDF/PNG files are kept in `figures/report/`.
 
 | Figure | Preview | Role | Code or source |
 |---|---|---|---|
-| [icecube.png](../figures/report/icecube.png) | same file | IceCube detector schematic | External/reference figure used by report |
-| [icecube_events.png](../figures/report/icecube_events.png) | same file | IceCube event-type examples | External/reference figure used by report |
-| [shrenkov.pdf](../figures/report/shrenkov.pdf) | [preview](../figures/report_previews/shrenkov.png) | Cherenkov schematic | Report figure asset |
+| [icecube.png](../figures/report/icecube.png) | same file | IceCube detector schematic | External/reference figure |
+| [icecube_events.png](../figures/report/icecube_events.png) | same file | IceCube event-type examples | External/reference figure |
+| [shrenkov.pdf](../figures/report/shrenkov.pdf) | [preview](../figures/report_previews/shrenkov.png) | Cherenkov schematic | Schematic asset |
 | [plot_run126491_event30343391_DOM83-31-0.pdf](../figures/report/plot_run126491_event30343391_DOM83-31-0.pdf) | [preview](../figures/report_previews/plot_run126491_event30343391_DOM83-31-0.png) | HLC ATWD/fADC waveform example | [waveform_demo](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/) |
 | [event_display_through_stopped.pdf](../figures/report/event_display_through_stopped.pdf) | [preview](../figures/report_previews/event_display_through_stopped.png) | Stopped vs through-going event display | [plot_event_display_through_stopped.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_event_display_through_stopped.py), [pulse_event_display.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/pulse_event_display.py) |
 | [decision_tree.pdf](../figures/report/decision_tree.pdf) | [preview](../figures/report_previews/decision_tree.png) | Decision-tree schematic | [make_ch3_figures.py](../figures/report/make_ch3_figures.py) |
