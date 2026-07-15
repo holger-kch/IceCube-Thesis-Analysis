@@ -1,0 +1,9 @@
+Saved waveform plot
+-------------------
+Data source       : MINIONS
+Run / event       : 126491 / 30343391
+DOM (string,om,pmt): (83, 31, 0)
+HLC launch t_main : 12028.9 ns
+PMT HV / gain     : 1248 V / 1.00e+07
+ATWD ch2 total : 312.6 PE
+FADC total        : 252.2 PE

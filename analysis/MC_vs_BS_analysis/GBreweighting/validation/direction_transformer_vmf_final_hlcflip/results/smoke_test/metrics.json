@@ -1,0 +1,14 @@
+{
+  "best_val_loss": 2.145698070526123,
+  "test": {
+    "val_loss": 2.0614066123962402,
+    "weighted_median_opening_deg": 69.17620086669922,
+    "weighted_mean_opening_deg": 54.84726333618164,
+    "weighted_q68_opening_deg": 76.53675842285156,
+    "weighted_kappa_median": 2.0619115829467773,
+    "weighted_kappa_q10": 2.0607738494873047,
+    "weighted_kappa_q90": 2.0660576820373535,
+    "weighted_kappa_mean": 2.061859369277954
+  },
+  "n_params": 11590
+}

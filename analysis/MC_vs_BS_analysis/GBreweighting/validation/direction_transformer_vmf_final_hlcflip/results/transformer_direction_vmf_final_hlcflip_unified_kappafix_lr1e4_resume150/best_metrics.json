@@ -1,0 +1,15 @@
+{
+  "epoch": 9,
+  "best_val_loss": -3.1440088748931885,
+  "val_metrics": {
+    "val_loss": -3.1440088748931885,
+    "weighted_median_opening_deg": 2.801698923110962,
+    "weighted_mean_opening_deg": 4.715474605560303,
+    "weighted_q68_opening_deg": 3.8615827560424805,
+    "weighted_kappa_median": 466.25,
+    "weighted_kappa_q10": 151.375,
+    "weighted_kappa_q90": 500.0,
+    "weighted_kappa_mean": 396.9051208496094
+  },
+  "train_loss": -3.044239931734684
+}

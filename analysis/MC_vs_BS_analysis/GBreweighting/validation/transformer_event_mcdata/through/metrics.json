@@ -1,0 +1,31 @@
+{
+  "task": "event_mcdata",
+  "class": "through",
+  "auc": 0.9864362840365922,
+  "n_train": 1664236,
+  "n_val": 356622,
+  "n_test": 356623,
+  "n_test_rows": 356623,
+  "n_params": 1099661,
+  "epochs": 20,
+  "batch_size": 256,
+  "max_pulses": 512,
+  "max_events_per_source": 0,
+  "features": [
+    "charge",
+    "dom_x",
+    "dom_y",
+    "dom_z",
+    "dom_time",
+    "rde",
+    "pmt_area",
+    "hlc"
+  ],
+  "d_model": 128,
+  "num_layers": 6,
+  "num_heads": 8,
+  "ffn_dim": 384,
+  "dropout": 0.05,
+  "lr": 0.0003,
+  "weight_decay": 0.01
+}

@@ -1,0 +1,108 @@
+# Figure Index
+
+This index maps the report figures in `figures/report/` to the scripts and
+analysis code that generated them or produced the result shown in them.
+
+For PDF figures, `figures/report_previews/` contains PNG previews for GitHub
+browsing. The original PDF/PNG files are kept in `figures/report/`.
+
+## Detector, Readout, And ML Schematics
+
+| Figure | Preview | Role | Code or source |
+|---|---|---|---|
+| [icecube.png](../figures/report/icecube.png) | same file | IceCube detector schematic | External/reference figure used by report |
+| [icecube_events.png](../figures/report/icecube_events.png) | same file | IceCube event-type examples | External/reference figure used by report |
+| [shrenkov.pdf](../figures/report/shrenkov.pdf) | [preview](../figures/report_previews/shrenkov.png) | Cherenkov schematic | Report figure asset |
+| [plot_run126491_event30343391_DOM83-31-0.pdf](../figures/report/plot_run126491_event30343391_DOM83-31-0.pdf) | [preview](../figures/report_previews/plot_run126491_event30343391_DOM83-31-0.png) | HLC ATWD/fADC waveform example | [waveform_demo](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/) |
+| [plot_run126491_event30343391_DOM83-31-0.png](../figures/report/plot_run126491_event30343391_DOM83-31-0.png) | same file | PNG copy of waveform example | [waveform_demo](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/) |
+| [event_display_through_stopped.pdf](../figures/report/event_display_through_stopped.pdf) | [preview](../figures/report_previews/event_display_through_stopped.png) | Stopped vs through-going event display | [plot_event_display_through_stopped.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_event_display_through_stopped.py), [pulse_event_display.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/pulse_event_display.py) |
+| [decision_tree.pdf](../figures/report/decision_tree.pdf) | [preview](../figures/report_previews/decision_tree.png) | Decision-tree schematic | [make_ch3_figures.py](../figures/report/make_ch3_figures.py) |
+| [bdt_schematic.pdf](../figures/report/bdt_schematic.pdf) | [preview](../figures/report_previews/bdt_schematic.png) | Boosted-decision-tree schematic | [make_ch3_figures.py](../figures/report/make_ch3_figures.py) |
+| [transformer_architecture.pdf](../figures/report/transformer_architecture.pdf) | [preview](../figures/report_previews/transformer_architecture.png) | Transformer architecture schematic | [make_ch3_figures.py](../figures/report/make_ch3_figures.py) |
+| [transformer_attention.pdf](../figures/report/transformer_attention.pdf) | [preview](../figures/report_previews/transformer_attention.png) | Attention schematic | [make_transformer_simple.py](../figures/report/make_transformer_simple.py) |
+| [transformer_simple_horizontal.pdf](../figures/report/transformer_simple_horizontal.pdf) | [preview](../figures/report_previews/transformer_simple_horizontal.png) | Simple transformer schematic | [make_transformer_simple.py](../figures/report/make_transformer_simple.py) |
+| [transformer_simple_horizontal.png](../figures/report/transformer_simple_horizontal.png) | same file | PNG copy of simple transformer schematic | [make_transformer_simple.py](../figures/report/make_transformer_simple.py) |
+| [vmf_sphere.pdf](../figures/report/vmf_sphere.pdf) | [preview](../figures/report_previews/vmf_sphere.png) | von Mises-Fisher schematic | Report figure asset; used by vMF section |
+
+## Stopped vs Through-Going Classifier
+
+| Figure | Preview | Role | Code or source |
+|---|---|---|---|
+| [training_history.pdf](../figures/report/training_history.pdf) | [preview](../figures/report_previews/training_history.png) | Stopped/through classifier training history | [train_stopped_transformer.py](../analysis/ThroughOrStopped_muon/train_stopped_transformer.py), [plot_stopped_results.py](../analysis/ThroughOrStopped_muon/plot_stopped_results.py), [plot_stopped_transformer_documentation.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/stopped_transformer_documentation/plot_stopped_transformer_documentation.py) |
+| [test_performance.pdf](../figures/report/test_performance.pdf) | [preview](../figures/report_previews/test_performance.png) | Stopped/through confusion matrix and ROC | [plot_stopped_transformer_documentation.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/stopped_transformer_documentation/plot_stopped_transformer_documentation.py) |
+| [mc_test_score_distributions.pdf](../figures/report/mc_test_score_distributions.pdf) | [preview](../figures/report_previews/mc_test_score_distributions.png) | Stopped/through MC test logits/scores | [plot_stopped_transformer_documentation.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/stopped_transformer_documentation/plot_stopped_transformer_documentation.py) |
+
+## Baseline MC-vs-Data Distributions
+
+| Figure | Preview | Role | Code or source |
+|---|---|---|---|
+| [pulse_level_variables_unmerged_full_page1.pdf](../figures/report/pulse_level_variables_unmerged_full_page1.pdf) | [preview](../figures/report_previews/pulse_level_variables_unmerged_full_page1.png) | Pulse-level baseline distributions | [make_pulse_level_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_pulse_level_a4_figure.py), [compare_weighted_mc_vs_data_parquet_nolog_unmerged.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/compare_weighted_mc_vs_data_parquet_nolog_unmerged.py) |
+| [pulse_level_variables_unmerged_full_page2.pdf](../figures/report/pulse_level_variables_unmerged_full_page2.pdf) | [preview](../figures/report_previews/pulse_level_variables_unmerged_full_page2.png) | Pulse-level baseline distributions | [make_pulse_level_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_pulse_level_a4_figure.py) |
+| [pulse_level_variables_unmerged_full_page3.pdf](../figures/report/pulse_level_variables_unmerged_full_page3.pdf) | [preview](../figures/report_previews/pulse_level_variables_unmerged_full_page3.png) | Additional pulse-level baseline distributions | [make_pulse_level_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_pulse_level_a4_figure.py) |
+| [event_level_aggregates_unmerged_full_page1.pdf](../figures/report/event_level_aggregates_unmerged_full_page1.pdf) | [preview](../figures/report_previews/event_level_aggregates_unmerged_full_page1.png) | Event-level baseline aggregates | [make_event_aggregate_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py) |
+| [event_level_aggregates_unmerged_full_page2.pdf](../figures/report/event_level_aggregates_unmerged_full_page2.pdf) | [preview](../figures/report_previews/event_level_aggregates_unmerged_full_page2.png) | Event-level baseline aggregates | [make_event_aggregate_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py) |
+| [event_level_aggregates_unmerged_full_page3.pdf](../figures/report/event_level_aggregates_unmerged_full_page3.pdf) | [preview](../figures/report_previews/event_level_aggregates_unmerged_full_page3.png) | Event-level baseline aggregates | [make_event_aggregate_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py) |
+
+## Direction Reconstruction And GB Reweighting
+
+| Figure | Preview | Role | Code or source |
+|---|---|---|---|
+| [training_history_direction.pdf](../figures/report/training_history_direction.pdf) | [preview](../figures/report_previews/training_history_direction.png) | Direction-model training history | [direction transformer](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/), [plot_direction_transformer_documentation.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/plot_direction_transformer_documentation.py) |
+| [open_angle_performance.pdf](../figures/report/open_angle_performance.pdf) | [preview](../figures/report_previews/open_angle_performance.png) | Direction reconstruction opening-angle performance | [plot_direction_transformer_documentation.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/plot_direction_transformer_documentation.py) |
+| [mc_data_zenith_azimuth_overlay.pdf](../figures/report/mc_data_zenith_azimuth_overlay.pdf) | [preview](../figures/report_previews/mc_data_zenith_azimuth_overlay.png) | MC/data reconstructed direction before GB weights | [plot_direction_transformer_documentation.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/plot_direction_transformer_documentation.py) |
+| [mc_data_zenith_azimuth_overlay_with_GBR.pdf](../figures/report/mc_data_zenith_azimuth_overlay_with_GBR.pdf) | [preview](../figures/report_previews/mc_data_zenith_azimuth_overlay_with_GBR.png) | MC/data reconstructed direction after GB weights | [fit_GBreweighter_hlc_rde_unmerged_2M.py](../analysis/MC_vs_BS_analysis/GBreweighting/fit_GBreweighter_hlc_rde_unmerged_2M.py), [plot_direction_transformer_documentation.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/plot_direction_transformer_documentation.py) |
+| [mc_data_zenith_azimuth_stopped.pdf](../figures/report/mc_data_zenith_azimuth_stopped.pdf) | [preview](../figures/report_previews/mc_data_zenith_azimuth_stopped.png) | Per-class direction diagnostic, stopped | [direction transformer documentation plots](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/) |
+| [mc_data_zenith_azimuth_through.pdf](../figures/report/mc_data_zenith_azimuth_through.pdf) | [preview](../figures/report_previews/mc_data_zenith_azimuth_through.png) | Per-class direction diagnostic, through-going | [direction transformer documentation plots](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/) |
+| [pulse_level_variables_unmerged_gbweighted_full_page1.pdf](../figures/report/pulse_level_variables_unmerged_gbweighted_full_page1.pdf) | [preview](../figures/report_previews/pulse_level_variables_unmerged_gbweighted_full_page1.png) | Pulse variables before/after angular weights | [make_pulse_level_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_pulse_level_a4_figure.py) |
+| [pulse_level_variables_unmerged_gbweighted_full_page2.pdf](../figures/report/pulse_level_variables_unmerged_gbweighted_full_page2.pdf) | [preview](../figures/report_previews/pulse_level_variables_unmerged_gbweighted_full_page2.png) | Pulse variables before/after angular weights | [make_pulse_level_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_pulse_level_a4_figure.py) |
+| [event_level_aggregates_unmerged_gbweighted_full_page1.pdf](../figures/report/event_level_aggregates_unmerged_gbweighted_full_page1.pdf) | [preview](../figures/report_previews/event_level_aggregates_unmerged_gbweighted_full_page1.png) | Event aggregates before/after angular weights | [make_event_aggregate_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py) |
+| [event_level_aggregates_unmerged_gbweighted_full_page2.pdf](../figures/report/event_level_aggregates_unmerged_gbweighted_full_page2.pdf) | [preview](../figures/report_previews/event_level_aggregates_unmerged_gbweighted_full_page2.png) | Event aggregates before/after angular weights | [make_event_aggregate_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py) |
+| [event_level_aggregates_unmerged_gbweighted_full_page3.pdf](../figures/report/event_level_aggregates_unmerged_gbweighted_full_page3.pdf) | [preview](../figures/report_previews/event_level_aggregates_unmerged_gbweighted_full_page3.png) | Event aggregates before/after angular weights | [make_event_aggregate_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py) |
+
+## Pulse Merging And HLC Re-Labelling
+
+| Figure | Preview | Role | Code or source |
+|---|---|---|---|
+| [small_pulses_through_run136141_event242722_string61_dom3_final_legend_default_up.pdf](../figures/report/small_pulses_through_run136141_event242722_string61_dom3_final_legend_default_up.pdf) | [preview](../figures/report_previews/small_pulses_through_run136141_event242722_string61_dom3_final_legend_default_up.png) | Single-DOM pulse-merger illustration | [make_small_pulse_merge_plot.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plots/small_pulses/make_small_pulse_merge_plot.py), [pulse_merger.py](../analysis/MC_vs_BS_analysis/GBreweighting/pulse_merger.py) |
+| [mc_data_charge_hlc_slc.pdf](../figures/report/mc_data_charge_hlc_slc.pdf) | [preview](../figures/report_previews/mc_data_charge_hlc_slc.png) | Charge distributions before/after merging | [plot_pulse_merging.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/data_parquet_v2/pulse_merging_plots/plot_pulse_merging.py) |
+| [pulses_per_dom.pdf](../figures/report/pulses_per_dom.pdf) | [preview](../figures/report_previews/pulses_per_dom.png) | Pulses per DOM before/after merging | [plot_pulse_merging.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/data_parquet_v2/pulse_merging_plots/plot_pulse_merging.py) |
+| [hlc_flip_rate_sweep_merged_v2_stopped_through_side_by_side_0_to_10p0_step0p5.pdf](../figures/report/hlc_flip_rate_sweep_merged_v2_stopped_through_side_by_side_0_to_10p0_step0p5.pdf) | [preview](../figures/report_previews/hlc_flip_rate_sweep_merged_v2_stopped_through_side_by_side_0_to_10p0_step0p5.png) | HLC flip-rate sweep | [run_hlc_flip_sweep_merged_v2_all.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/run_hlc_flip_sweep_merged_v2_all.py), [plot_hlc_flip_sweep_merged_v2_side_by_side.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_hlc_flip_sweep_merged_v2_side_by_side.py) |
+| [hlc_frac_mc_vs_data_merged_v2_stopped_through_best_transformer_flip_side_by_side.pdf](../figures/report/hlc_frac_mc_vs_data_merged_v2_stopped_through_best_transformer_flip_side_by_side.pdf) | [preview](../figures/report_previews/hlc_frac_mc_vs_data_merged_v2_stopped_through_best_transformer_flip_side_by_side.png) | HLC fraction after best transformer flip | [plot_hlc_frac_merged_v2_best_transformer_flip.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_hlc_frac_merged_v2_best_transformer_flip.py) |
+
+## Charge-Time And Afterpulse Diagnostics
+
+| Figure | Preview | Role | Code or source |
+|---|---|---|---|
+| [afterpulse_stopped_mc_transformer_hlcflip_best.pdf](../figures/report/afterpulse_stopped_mc_transformer_hlcflip_best.pdf) | [preview](../figures/report_previews/afterpulse_stopped_mc_transformer_hlcflip_best.png) | Stopped MC charge-time plane | [plot_afterpulse_a4_transformer_hlcflip_best.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_a4_transformer_hlcflip_best.py) |
+| [afterpulse_stopped_data_transformer_hlcflip_best.pdf](../figures/report/afterpulse_stopped_data_transformer_hlcflip_best.pdf) | [preview](../figures/report_previews/afterpulse_stopped_data_transformer_hlcflip_best.png) | Stopped data charge-time plane | [plot_afterpulse_a4_transformer_hlcflip_best.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_a4_transformer_hlcflip_best.py) |
+| [afterpulse_stopped_mc_over_data_transformer_hlcflip_best.pdf](../figures/report/afterpulse_stopped_mc_over_data_transformer_hlcflip_best.pdf) | [preview](../figures/report_previews/afterpulse_stopped_mc_over_data_transformer_hlcflip_best.png) | Stopped charge-time residual | [plot_afterpulse_a4_transformer_hlcflip_best.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_a4_transformer_hlcflip_best.py) |
+| [afterpulse_through_mc_transformer_hlcflip_best.pdf](../figures/report/afterpulse_through_mc_transformer_hlcflip_best.pdf) | [preview](../figures/report_previews/afterpulse_through_mc_transformer_hlcflip_best.png) | Through-going MC charge-time plane | [plot_afterpulse_a4_transformer_hlcflip_best.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_a4_transformer_hlcflip_best.py) |
+| [afterpulse_through_data_transformer_hlcflip_best.pdf](../figures/report/afterpulse_through_data_transformer_hlcflip_best.pdf) | [preview](../figures/report_previews/afterpulse_through_data_transformer_hlcflip_best.png) | Through-going data charge-time plane | [plot_afterpulse_a4_transformer_hlcflip_best.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_a4_transformer_hlcflip_best.py) |
+| [afterpulse_through_mc_over_data_transformer_hlcflip_best.pdf](../figures/report/afterpulse_through_mc_over_data_transformer_hlcflip_best.pdf) | [preview](../figures/report_previews/afterpulse_through_mc_over_data_transformer_hlcflip_best.png) | Through-going charge-time residual | [plot_afterpulse_a4_transformer_hlcflip_best.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_a4_transformer_hlcflip_best.py) |
+
+## vMF Uncertainty And Final Benchmark
+
+| Figure | Preview | Role | Code or source |
+|---|---|---|---|
+| [vmf_training_history_loss_opening_kappa.pdf](../figures/report/vmf_training_history_loss_opening_kappa.pdf) | [preview](../figures/report_previews/vmf_training_history_loss_opening_kappa.png) | vMF model training history | [train_vmf_final_hlcflip.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_vmf_final_hlcflip/train_vmf_final_hlcflip.py), [plot_vmf_uncertainty_final_hlcflip.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_vmf_uncertainty_final_hlcflip.py) |
+| [vmf_kappa_mc_data_stopped_through_side_by_side.pdf](../figures/report/vmf_kappa_mc_data_stopped_through_side_by_side.pdf) | [preview](../figures/report_previews/vmf_kappa_mc_data_stopped_through_side_by_side.png) | MC/data kappa distributions | [plot_vmf_uncertainty_final_hlcflip.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_vmf_uncertainty_final_hlcflip.py) |
+| [vmf_pole_collapse_evidence.pdf](../figures/report/vmf_pole_collapse_evidence.pdf) | [preview](../figures/report_previews/vmf_pole_collapse_evidence.png) | Low-kappa MC pole-collapse diagnostic | [plot_vmf_pole_collapse_evidence.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_vmf_pole_collapse_evidence.py), [diagnose_low_kappa_mc.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/diagnose_low_kappa_mc.py) |
+| [five_stage_logit_roc_overlay_combined.pdf](../figures/report/five_stage_logit_roc_overlay_combined.pdf) | [preview](../figures/report_previews/five_stage_logit_roc_overlay_combined.png) | Final ROC comparison across correction stages | [plot_stage_logit_roc_overlay.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_roc_overlay.py) |
+| [logit_catalog_common_xlim.pdf](../figures/report/logit_catalog_common_xlim.pdf) | [preview](../figures/report_previews/logit_catalog_common_xlim.png) | Final logit distributions across correction stages | [plot_stage_logit_catalog.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_catalog.py) |
+
+## Extra Report Assets Included
+
+These files were also present in `final/figures/` and are kept so the GitHub
+figure folder is a faithful copy of the report figure workspace.
+
+| File | Notes |
+|---|---|
+| [analysis_pipeline.pdf](../figures/report/analysis_pipeline.pdf) | Pipeline schematic asset; [preview](../figures/report_previews/analysis_pipeline.png) |
+| [forside_bg.png](../figures/report/forside_bg.png) | Title/front-page background asset |
+| [image1.png](../figures/report/image1.png) | Extra report image asset |
+| [image2.png](../figures/report/image2.png) | Extra report image asset |
+| [image3.png](../figures/report/image3.png) | Extra report image asset |
+| [image4.png](../figures/report/image4.png) | Extra report image asset |
+| [view_tr-1.png](../figures/report/view_tr-1.png) | Extra report image asset |
+| [make_ch3_figures.py](../figures/report/make_ch3_figures.py) | Local script for schematic figures |
+| [make_transformer_simple.py](../figures/report/make_transformer_simple.py) | Local script for transformer schematic figures |

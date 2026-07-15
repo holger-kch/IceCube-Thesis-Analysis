@@ -1,0 +1,16 @@
+{
+  "task": "stopped_through_classification",
+  "test": {
+    "auc": 0.9917234357096858,
+    "accuracy": 0.949235,
+    "n_stopped": 103419,
+    "n_through": 96581,
+    "note": "inference on SplitInIcePulses_merged (no retrain); 200,000-event subsample"
+  },
+  "best_val_auc": 0.9881660409904969,
+  "n_train": 1619920,
+  "n_val": 202490,
+  "n_test": 200000,
+  "n_params": 3371981,
+  "pos_weight": 2.442875862121582
+}

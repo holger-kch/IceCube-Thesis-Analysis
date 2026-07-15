@@ -1,0 +1,30 @@
+{
+  "task": "pulse_mcdata",
+  "class": "stopped",
+  "auc": 0.9539863308203407,
+  "n_train": 1117256,
+  "n_val": 239412,
+  "n_test": 239412,
+  "n_test_rows": 15703113,
+  "n_params": 1033613,
+  "epochs": 20,
+  "batch_size": 256,
+  "max_pulses": 512,
+  "features": [
+    "charge",
+    "dom_x",
+    "dom_y",
+    "dom_z",
+    "dom_time",
+    "rde",
+    "pmt_area",
+    "hlc"
+  ],
+  "d_model": 128,
+  "num_layers": 6,
+  "num_heads": 8,
+  "ffn_dim": 384,
+  "dropout": 0.05,
+  "lr": 0.0003,
+  "weight_decay": 0.01
+}

@@ -1,0 +1,20 @@
+vMF uncertainty summary
+=======================
+
+The vMF direction model has no native classification AUC.
+The AUC reported here uses kappa alone as a data-vs-MC score (data=1).
+
+Best epoch: 55
+Test median opening angle: 1.766 deg
+Test q68 opening angle: 2.568 deg
+Test kappa median [q10-q90]: 919.5 [240.1-1354.0]
+Test kappa clip fraction: 0.000000
+
+stopped: kappa-only AUC=0.5442, distinguishability=0.5442, W1=60.7
+through: kappa-only AUC=0.5330, distinguishability=0.5330, W1=51.9
+
+  class source  n_events   weight_sum  kappa_q10  kappa_median  kappa_q90  kappa_mean
+stopped     mc   1076790  4328.184104    163.375         730.0     1206.0  709.809194
+stopped   data    516894  4328.184106    277.250         789.0     1228.0  770.459416
+through     mc    948110 12003.401754    312.000         992.0     1385.0  918.911192
+through   data   1431767 12003.401759    423.000        1036.0     1397.0  970.820430

@@ -1,0 +1,23 @@
+{
+  "model": "multi_task_transformer",
+  "checkpoint": "partial (best_model.pt from interrupted training)",
+  "n_test": 71975,
+  "n_train": 575789,
+  "direction": {
+    "opening_mean_deg": 4.8234171867370605,
+    "opening_median_deg": 2.4931640625,
+    "opening_q68_deg": 3.581969089508057
+  },
+  "energy": {
+    "mae_GeV": 121.83158111572266,
+    "median_error_GeV": 46.91119384765625,
+    "q68_error_GeV": 89.93195434570313,
+    "q90_error_GeV": 296.6901977539062
+  },
+  "position_z": {
+    "mae_m": 126.97767639160156,
+    "median_error_m": 59.808868408203125,
+    "q68_error_m": 133.28991210937502,
+    "q90_error_m": 332.99541015624993
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "class": "through",
+  "auc": 0.9149661897633923,
+  "n_train_events": 280000,
+  "n_val_events": 60000,
+  "n_test_events": 60000,
+  "n_test_pulses": 5329472,
+  "n_params": 1382449,
+  "epochs": 20,
+  "batch_size": 128,
+  "max_events_per_source": 200000,
+  "features": [
+    "charge",
+    "dom_x",
+    "dom_y",
+    "dom_z",
+    "dom_time",
+    "rde",
+    "pmt_area"
+  ],
+  "feature_importance": [
+    {
+      "feature": "charge",
+      "auc_perm": 0.7270145378905406,
+      "auc_drop": 0.18795165187285168
+    },
+    {
+      "feature": "dom_x",
+      "auc_perm": 0.8548211810444962,
+      "auc_drop": 0.060145008718896054
+    },
+    {
+      "feature": "dom_y",
+      "auc_perm": 0.8551161622820311,
+      "auc_drop": 0.059850027481361145
+    },
+    {
+      "feature": "dom_z",
+      "auc_perm": 0.8693014834597111,
+      "auc_drop": 0.045664706303681135
+    },
+    {
+      "feature": "dom_time",
+      "auc_perm": 0.8185630001322965,
+      "auc_drop": 0.09640318963109573
+    },
+    {
+      "feature": "rde",
+      "auc_perm": 0.8773101695336722,
+      "auc_drop": 0.03765602022972003
+    },
+    {
+      "feature": "pmt_area",
+      "auc_perm": 0.9149652917271217,
+      "auc_drop": 8.980362705690581e-07
+    }
+  ]
+}

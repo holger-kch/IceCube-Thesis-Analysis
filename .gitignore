@@ -45,27 +45,16 @@
 *.toc
 
 # Local writing/export folders are intentionally not versioned
-final/
-report/
-thesis/
-kilder/
-references_pdf/
+/final/
+/report/
+/thesis/
+/kilder/
+/references_pdf/
 nuclear-and-particle-physics-*.pdf
 
-# Analysis is intentionally code-only
-analysis/**/results/
-analysis/**/result/
-analysis/**/output/
-analysis/**/outputs/
-analysis/**/plots/
-analysis/**/data_parquet/
-analysis/**/*.json
-analysis/**/*.txt
-analysis/**/*.pdf
-analysis/**/*.png
-analysis/**/*.jpg
-analysis/**/*.jpeg
-analysis/**/*.svg
+# Analysis keeps source, Slurm scripts, configs, notebooks, and small
+# result summaries. Raw detector/data products and model weights are
+# still blocked by the global extension rules above.
 analysis/**/*.docx
 
 # Job output, caches, and local tooling

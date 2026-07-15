@@ -1,0 +1,8 @@
+SLC chargestamp
+---------------
+Data source       : MINIONS (IC86.2015 burnsample)
+Run / event       : 126387 / 17576980
+DOM (string,om,pmt): (11, 32, 0)
+Launch time       : 11501.1 ns
+raw_charge_stamp  : [183, 277, 276]
+peak sample idx   : 7

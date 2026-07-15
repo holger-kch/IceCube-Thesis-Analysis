@@ -1,0 +1,21 @@
+Permutation importance: through, merged v2, final_weight
+========================================================================
+Model: /lustre/hpc/icecube/holgerkc/Thesis_Analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/results/transformer_data_vs_mc_through_hlc_rde_merged_v2_finalweight
+Test events: 237,989
+Metric: weighted ROC AUC only
+Baseline weighted AUC: 0.98920393
+
+Feature ranking by weighted AUC drop:
+
+rank  feature       weighted_auc        auc_drop
+   1  hlc             0.56095841      0.42824552
+   2  dom_time        0.66111754      0.32808639
+   3  dom_z           0.76674710      0.22245683
+   4  dom_x           0.88979030      0.09941363
+   5  dom_y           0.89956244      0.08964150
+   6  charge          0.95984490      0.02935903
+   7  rde             0.97321021      0.01599373
+
+Permutation detail:
+  Each pulse feature channel is shuffled across valid pulses within each
+  evaluation batch. Event aggregate features are kept fixed.

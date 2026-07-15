@@ -1,0 +1,13 @@
+{
+  "class": "stopped",
+  "auc": 0.5005717495718734,
+  "n_train": 754170,
+  "n_val": 161608,
+  "n_test": 161609,
+  "n_params": 1382321,
+  "epochs": 20,
+  "batch_size": 128,
+  "max_events": 2000000,
+  "seed": 42,
+  "verdict": "PIPELINE HONEST"
+}

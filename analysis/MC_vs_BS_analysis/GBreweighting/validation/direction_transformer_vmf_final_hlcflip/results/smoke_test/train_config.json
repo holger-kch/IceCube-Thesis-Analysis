@@ -1,0 +1,42 @@
+{
+  "out_dir": "/groups/icecube/holgerkc/Thesis_Analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_vmf_final_hlcflip/results/smoke_test",
+  "epochs": 1,
+  "batch_size": 8,
+  "num_workers": 0,
+  "prefetch_factor": 2,
+  "lr": 0.0005,
+  "pct_start": 0.1,
+  "weight_decay": 0.01,
+  "early_stopping": 10,
+  "seed": 42,
+  "n_train": 32,
+  "n_val": 4,
+  "n_test": 4,
+  "max_events_per_class": 20,
+  "classes": [
+    "stopped",
+    "through"
+  ],
+  "d_model": 32,
+  "num_layers": 1,
+  "num_heads": 4,
+  "ffn_dim": 64,
+  "head_hidden_dim": 32,
+  "input_mode": "linear",
+  "dropout": 0.0,
+  "kappa_min": 1.0,
+  "kappa_max": 500.0,
+  "kappa_reg": 0.0001,
+  "no_amp": true,
+  "input_dim": 68,
+  "max_doms": 256,
+  "max_pulses_per_dom": 16,
+  "pulse_features": [
+    "dom_time",
+    "charge",
+    "hlc",
+    "rde"
+  ],
+  "loss": "weighted K=1 vMF NLL",
+  "training_weight": "final_weight"
+}

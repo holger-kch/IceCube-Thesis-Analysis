@@ -1,0 +1,64 @@
+{
+  "class": "stopped",
+  "auc": 0.9300236286185695,
+  "n_train_events": 1117256,
+  "n_val_events": 239412,
+  "n_test_events": 239412,
+  "n_test_pulses": 15703849,
+  "n_params": 1383633,
+  "epochs": 20,
+  "batch_size": 128,
+  "max_events_per_source": 2000000,
+  "features": [
+    "charge",
+    "dom_x",
+    "dom_y",
+    "dom_z",
+    "dom_time",
+    "rde",
+    "pmt_area",
+    "hlc"
+  ],
+  "feature_importance": [
+    {
+      "feature": "charge",
+      "auc_perm": 0.8940805454186345,
+      "auc_drop": 0.035943083199935
+    },
+    {
+      "feature": "dom_x",
+      "auc_perm": 0.829924696040633,
+      "auc_drop": 0.10009893257793645
+    },
+    {
+      "feature": "dom_y",
+      "auc_perm": 0.8380407660767072,
+      "auc_drop": 0.09198286254186228
+    },
+    {
+      "feature": "dom_z",
+      "auc_perm": 0.7601870688172976,
+      "auc_drop": 0.16983655980127188
+    },
+    {
+      "feature": "dom_time",
+      "auc_perm": 0.7271177496271912,
+      "auc_drop": 0.20290587899137824
+    },
+    {
+      "feature": "rde",
+      "auc_perm": 0.9165878640614215,
+      "auc_drop": 0.013435764557148011
+    },
+    {
+      "feature": "pmt_area",
+      "auc_perm": 0.9300242540957354,
+      "auc_drop": -6.254771659497393e-07
+    },
+    {
+      "feature": "hlc",
+      "auc_perm": 0.5900099931687095,
+      "auc_drop": 0.34001363544985996
+    }
+  ]
+}

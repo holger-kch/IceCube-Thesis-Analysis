@@ -1,0 +1,93 @@
+{
+  "note": "The vMF direction model is a regression/likelihood model and does not have a native AUC. The AUC values below use kappa alone as a one-dimensional data-vs-MC score, with data labelled 1.",
+  "result_dir": "/groups/icecube/holgerkc/Thesis_Analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_vmf_final_hlcflip/results/transformer_direction_vmf_final_hlcflip_unified_kmax3000_reg5e4_guard_resume150",
+  "prediction_dir": "/groups/icecube/holgerkc/Thesis_Analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_vmf_final_hlcflip/predictions",
+  "best_epoch": 55,
+  "best_validation": {
+    "epoch": 55,
+    "best_val_loss": -3.863523244857788,
+    "val_metrics": {
+      "val_loss": -3.863523244857788,
+      "weighted_median_opening_deg": 1.7766311168670654,
+      "weighted_mean_opening_deg": 3.7006030082702637,
+      "weighted_q68_opening_deg": 2.5773940086364746,
+      "weighted_kappa_median": 917.0,
+      "weighted_kappa_q10": 249.25,
+      "weighted_kappa_q90": 1354.0,
+      "weighted_kappa_mean": 859.8861083984375,
+      "weighted_kappa_clip_frac": 0.0
+    },
+    "train_loss": -3.620803998447628
+  },
+  "test_metrics": {
+    "best_val_loss": -3.863523244857788,
+    "test": {
+      "val_loss": -3.856935739517212,
+      "weighted_median_opening_deg": 1.7656922340393066,
+      "weighted_mean_opening_deg": 3.758679151535034,
+      "weighted_q68_opening_deg": 2.5682647228240967,
+      "weighted_kappa_median": 919.5,
+      "weighted_kappa_q10": 240.125,
+      "weighted_kappa_q90": 1354.0,
+      "weighted_kappa_mean": 858.73291015625,
+      "weighted_kappa_clip_frac": 0.0
+    },
+    "n_params": 550156
+  },
+  "kappa_data_vs_mc_metrics": [
+    {
+      "class": "stopped",
+      "kappa_auc_data_vs_mc": 0.5442278458820502,
+      "kappa_auc_distinguishability": 0.5442278458820502,
+      "kappa_wasserstein": 60.65023382764207
+    },
+    {
+      "class": "through",
+      "kappa_auc_data_vs_mc": 0.5330108882015239,
+      "kappa_auc_distinguishability": 0.5330108882015239,
+      "kappa_wasserstein": 51.90938837403255
+    }
+  ],
+  "kappa_source_summary": [
+    {
+      "class": "stopped",
+      "source": "mc",
+      "n_events": 1076790,
+      "weight_sum": 4328.184104153912,
+      "kappa_q10": 163.375,
+      "kappa_median": 730.0,
+      "kappa_q90": 1206.0,
+      "kappa_mean": 709.8091944603101
+    },
+    {
+      "class": "stopped",
+      "source": "data",
+      "n_events": 516894,
+      "weight_sum": 4328.184105871245,
+      "kappa_q10": 277.25,
+      "kappa_median": 789.0,
+      "kappa_q90": 1228.0,
+      "kappa_mean": 770.4594162146942
+    },
+    {
+      "class": "through",
+      "source": "mc",
+      "n_events": 948110,
+      "weight_sum": 12003.401754065755,
+      "kappa_q10": 312.0,
+      "kappa_median": 992.0,
+      "kappa_q90": 1385.0,
+      "kappa_mean": 918.9111918085225
+    },
+    {
+      "class": "through",
+      "source": "data",
+      "n_events": 1431767,
+      "weight_sum": 12003.401758737862,
+      "kappa_q10": 423.0,
+      "kappa_median": 1036.0,
+      "kappa_q90": 1397.0,
+      "kappa_mean": 970.8204299033051
+    }
+  ]
+}

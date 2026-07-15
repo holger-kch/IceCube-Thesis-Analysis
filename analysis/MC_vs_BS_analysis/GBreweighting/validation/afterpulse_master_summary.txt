@@ -1,0 +1,26 @@
+Afterpulse master diagnostic — numeric summary
+============================================================
+  pulsemap:      SplitInIcePulses (unmerged)
+  primary cut:   q ≥ 5 PE
+  isolation:     no preceding pulse within 500 ns
+  Δt window:     0 - 50 μs
+
+--- class: stopped ---
+  pulses:        MC =     70,322,523   data =     36,578,675
+  primaries:     MC =         62,242   data =        151,525
+  followups:     MC =         98,347   data =        187,033
+  mean followups per primary:  MC = 1.580   data = 1.234   data/MC = 0.781
+  600 ns light ion (H⁺/He⁺)           data/MC = 0.37
+  2 μs gas ion (N₂⁺/O₂⁺)              data/MC = 0.42
+  8 μs cathode (Cs⁺/Rb⁺)              data/MC = 1.07
+  glass tail (10-50 μs)               data/MC = 3.69
+
+--- class: through ---
+  pulses:        MC =     80,047,588   data =    149,154,440
+  primaries:     MC =         64,421   data =        534,493
+  followups:     MC =        128,483   data =        809,806
+  mean followups per primary:  MC = 1.994   data = 1.515   data/MC = 0.760
+  600 ns light ion (H⁺/He⁺)           data/MC = 0.51
+  2 μs gas ion (N₂⁺/O₂⁺)              data/MC = 0.42
+  8 μs cathode (Cs⁺/Rb⁺)              data/MC = 0.85
+  glass tail (10-50 μs)               data/MC = 3.06

@@ -1,0 +1,9 @@
+Saved waveform plot
+-------------------
+Data source       : IC86.22 burnsample (NielsDB, oscNext L3 pass2)
+Run / event       : 136898 / 43905
+DOM (string,om,pmt): (85, 17, 0)
+HLC launch t_main : 10482.0 ns
+PMT HV / gain     : 1376 V / 1.00e+07
+ATWD totals       : ch0=53.3 PE, ch1=70.5 PE
+FADC total        : 98.9 PE

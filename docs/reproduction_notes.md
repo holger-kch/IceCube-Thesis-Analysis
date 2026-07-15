@@ -1,51 +1,84 @@
 # Reproduction Notes
 
-This repository is a project archive and navigation layer, not a runnable
-standalone data release.
+This repository is a code-first project archive, not a standalone data release.
+It is meant to preserve the report logic, figures, scripts, configs, metrics,
+and navigation needed to understand and rerun the project on the NBI/HEP
+cluster.
 
-## Excluded Files
+## Included
+
+The repository intentionally includes:
+
+- Analysis Python scripts.
+- Slurm job scripts.
+- YAML configs and small JSON training/metric summaries.
+- Notebooks with outputs cleared.
+- Small text summaries and small TeX tables used by the analysis.
+- All figure assets from `/groups/icecube/holgerkc/final/figures`.
+- PNG previews of PDF figures for GitHub browsing.
+
+The included figures are generated outputs, but they are part of the readable
+GitHub version of the project and make it possible to inspect the report
+results without regenerating every cluster job.
+
+## Excluded
 
 The following are intentionally not tracked:
 
-- IceCube `.i3` files
-- SQLite databases
-- parquet pulse/event tables
-- CSV outputs
-- trained checkpoints
-- generated plots
-- SLURM logs
-- LaTeX report files from `/groups/icecube/holgerkc/final`
+- Raw IceCube `.i3` files.
+- SQLite databases: `.db`, `.sqlite`, WAL/SHM sidecars.
+- Parquet pulse/event tables.
+- CSV data exports and intermediate score tables.
+- NumPy arrays, pickles, HDF5 files, ROOT files, and similar data products.
+- Model checkpoints and exported model weights.
+- Slurm `.out`/`.err` files and log directories.
+- Cache directories.
+- The compiled LaTeX report and LaTeX build artifacts.
 
-Those files are either too large, cluster-local, or generated products rather
-than source code.
+This means many scripts will not run directly after cloning unless the original
+cluster data products are present at the expected paths.
 
 ## Expected Environment
 
-The scripts were developed on the NBI HEP cluster and commonly assume:
+The scripts were developed on the NBI/HEP IceCube environment and commonly
+assume:
 
-- IceCube/GraphNeT-capable Python environment
-- PyTorch and PyTorch Lightning
-- pandas, numpy, scipy, scikit-learn
-- pyarrow/parquet support
-- hep_ml for `GBReweighter`
-- SLURM for training/inference jobs
+- IceCube/GraphNeT-capable Python environment.
+- PyTorch and PyTorch Lightning.
+- pandas, numpy, scipy, scikit-learn, matplotlib.
+- pyarrow/parquet support.
+- `hep_ml` for `GBReweighter`.
+- Slurm for training and inference jobs.
 
-Many paths in the scripts point to `/groups/icecube/...` and must be adapted if
-the project is moved elsewhere.
+Many scripts contain absolute paths under `/groups/icecube/holgerkc`. Those
+paths document the original run environment. If the project is moved, the paths
+must be adapted.
 
 ## Practical Run Order
 
-A full rerun is roughly:
+A full rerun follows the report order:
 
-1. Prepare or export pulse/event data tables.
-2. Train or run the stopped/through-going classifier.
-3. Train baseline MC-vs-data classifiers.
-4. Reconstruct event direction and fit GB reweights.
-5. Merge small pulses and rebuild parquet tables.
-6. Run permutation importance and HLC re-labelling.
-7. Train/apply the vMF uncertainty model.
-8. Rebuild the staged MC-vs-data AUC comparison.
+1. Build or locate the MC and burnsample pulse/event tables.
+2. Train the stopped/through-going classifier and run inference on MC/data.
+3. Export class-split parquet tables for validation.
+4. Train the baseline data-vs-MC transformer.
+5. Train/infer direction reconstruction and fit angular GB weights.
+6. Generate pulse/event distribution plots before and after GB reweighting.
+7. Run pulse merging and rebuild merged derived tables.
+8. Retrain MC-vs-data models after merging.
+9. Run permutation importance.
+10. Train HLC/SLC models, sweep flip rates, and apply the best HLC flip.
+11. Run charge-time and afterpulse diagnostics.
+12. Train/infer the vMF direction-uncertainty model.
+13. Apply the `kappa < 10` selection and retrain the final MC-vs-data models.
+14. Build the five-stage ROC and logit comparison.
 
-The code map links these stages to their scripts:
+Use [code_map.md](code_map.md) for stage-to-code navigation and
+[figure_index.md](figure_index.md) for figure-to-code navigation.
 
-- [`docs/code_map.md`](code_map.md)
+## Data Policy
+
+The repository is designed so that `git add -A` should not accidentally track
+raw data or model weights. The `.gitignore` blocks the relevant file extensions
+globally while still allowing small metrics/config summaries and the report
+figures.

@@ -1,0 +1,11 @@
+{
+  "best_val_loss": 0.06730610877275467,
+  "test": {
+    "val_loss": 0.06688138097524643,
+    "median_opening_deg": 2.1142404079437256,
+    "mean_opening_deg": 3.8312206268310547,
+    "q68_opening_deg": 3.0742595195770264,
+    "weighted_mean_opening_deg": 3.8320207595825195
+  },
+  "n_params": 550027
+}

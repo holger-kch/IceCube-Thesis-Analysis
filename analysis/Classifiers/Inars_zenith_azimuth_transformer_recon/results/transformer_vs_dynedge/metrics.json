@@ -1,0 +1,19 @@
+{
+  "test": {
+    "val_loss": 0.13554441928863525,
+    "median_opening_deg": 4.372824668884277,
+    "mean_opening_deg": 7.766122817993164,
+    "q68_opening_deg": 6.254908561706543
+  },
+  "best_val_loss": 0.1475296914577484,
+  "n_train": 4000,
+  "n_val": 500,
+  "n_test": 500,
+  "n_params": 547979,
+  "mode": "position",
+  "opening_mean_deg": 7.757918357849121,
+  "opening_median_deg": 4.383681297302246,
+  "opening_q68_deg": 6.254908046722413,
+  "opening_q90_deg": 14.099623489379885,
+  "opening_q95_deg": 29.038603305816608
+}

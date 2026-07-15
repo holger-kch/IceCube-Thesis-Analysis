@@ -1,0 +1,31 @@
+Direction transformer documentation summary
+===========================================
+
+results_dir: /lustre/hpc/icecube/holgerkc/Thesis_Analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/results/transformer_direction_hlc_rde_unmergedsplit_2M_unified
+zenaz_dir  : /lustre/hpc/icecube/holgerkc/Thesis_Analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/zenaz_hlc_rde_unmerged_2M
+
+Training / test metrics:
+  best epoch        : 37
+  best val loss     : 0.06947145611047745
+  test val_loss                : 0.07091376185417175
+  test median_opening_deg      : 2.291149139404297
+  test mean_opening_deg        : 3.901261806488037
+  test q68_opening_deg         : 3.3583545684814453
+  test weighted_mean_opening_deg: 4.063058853149414
+
+Opening-angle distributions from MC inference joined to truth:
+  stopped:
+    n      : 1,076,790
+    mean   : 3.958772 deg
+    median : 2.601849 deg
+    q68    : 3.753772 deg
+    q90    : 7.398765 deg
+  through:
+    n      : 948,110
+    mean   : 3.492777 deg
+    median : 1.919497 deg
+    q68    : 2.818164 deg
+    q90    : 5.904280 deg
+
+Note: confusion matrix / ROC plots are not produced here because this model is a
+direction regressor, not a binary stopped/through classifier.

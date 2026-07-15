@@ -1,0 +1,26 @@
+{
+  "auc": 1.0,
+  "auc_ci95": [
+    0.9999999999999999,
+    1.0
+  ],
+  "feature_importance": {
+    "mean_pmt_area_q": 0.5092392378623899,
+    "n_hits": 0.0,
+    "n_doms": 0.0,
+    "qtot": 0.0,
+    "qmax": 0.0,
+    "t_std": 0.0,
+    "t_extent": 0.0,
+    "z_mean": 0.0,
+    "z_std": 0.0,
+    "hlc_frac": 0.0,
+    "mean_rde_q": 0.0,
+    "frac_hqe": 0.0
+  },
+  "n_train": 798040,
+  "n_test": 798040,
+  "class": "stopped",
+  "stage": "stage1_raw_premerge",
+  "stage_label": "non-merged (raw)"
+}

@@ -1,0 +1,12 @@
+Saved afterpulse example
+------------------------
+DOM (string, om, pmt) : (84, 28, 0)
+Event run/id          : 126385 / 72302637
+Main pulse charge     : 219.6 PE (fADC integral)
+Afterpulse peak       : 5.26 PE
+  at Δt after main    : 4669 ns
+AP median (baseline)  : 0.079 PE/sample
+AP peak/median        : 66.5×
+AP integral           : 33.46 PE  (15.2% of main)
+PMT HV / gain         : 1360 V / 9.99e+06
+Source I3 file        : /lustre/hpc/icecube/janikh/MINIONS_DA_sample_2015_v5.i3.zst

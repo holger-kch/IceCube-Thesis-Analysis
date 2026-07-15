@@ -1,0 +1,28 @@
+{
+  "db_path": "/groups/icecube/petersen/GraphNetDatabaseRepository/osc_next_database_new_muons_peter/Merged_db/osc_next_level3_v2.00_genie_muongun_noise_120000_140000_160000_139008_888003_retro.db",
+  "split_json": "/groups/icecube/janikh/PREP/Reco_with_GNN/dynedge_muongun_muon/dynedge_muongun_muon_split.json",
+  "mode": "position",
+  "features": [
+    "dom_x",
+    "dom_y",
+    "dom_z",
+    "dom_time",
+    "charge",
+    "width"
+  ],
+  "epochs": 20,
+  "batch_size": 64,
+  "lr": 0.001,
+  "weight_decay": 0.01,
+  "d_model": 128,
+  "num_layers": 4,
+  "num_heads": 8,
+  "ffn_dim": 256,
+  "head_hidden_dim": 128,
+  "input_mode": "linear",
+  "dropout": 0.0,
+  "seed": 42,
+  "input_dim": 52,
+  "max_pulses_per_dom": 16,
+  "max_doms": 128
+}

@@ -1,146 +1,263 @@
 # Project Summary
 
-This is a compact version of the Master Thesis Preparation Project report. It
-follows the logic of `main.tex`, but is written as a GitHub project overview
-rather than a 66-page report.
+This is the compact GitHub version of the report in
+`/groups/icecube/holgerkc/final/main.tex`. It follows the same scientific
+story, keeps the same central figures, and points to the analysis code that
+produced the results.
 
-## Question
+## Motivation
 
-The project investigates whether IceCube Monte Carlo atmospheric muons look
-enough like real 2021 burnsample muons for machine-learning work. The central
-diagnostic is deliberately simple: train a classifier to distinguish MC from
-data. If the classifier reaches AUC near `0.5`, the samples are hard to tell
-apart. If the AUC is high, the simulation still carries detectable mismatches.
+IceCube machine-learning models are usually trained on Monte Carlo simulation
+and then applied to real detector data. That only works cleanly if simulation
+and data look sufficiently alike in the variables used by the model. This
+project tests that assumption with atmospheric muons, comparing roughly two
+million simulated Muon Gun events with roughly two million muon-classified
+events from the 2021 burnsample.
+
+The core diagnostic is deliberately strict: train a model to classify whether
+an event is real data or MC. If the model can do this well, the samples still
+differ in the joint feature space.
 
 ## Data Representation
 
-The analysis works on pulse-level IceCube data. Each event is a variable-size
-set of DOM pulses with features such as:
+The analysis uses `SplitInIcePulses`, where each event is a variable-size set
+of pulses. The main pulse-level variables are:
 
-- pulse time
-- reconstructed charge
-- DOM position `(x, y, z)`
-- relative DOM efficiency `rde`
-- HLC/SLC flag
+- `charge`
+- `dom_time`
+- `dom_x`, `dom_y`, `dom_z`
+- `hlc`
+- `rde`
 
-Several event-level aggregates are also used, including total charge, number of
-pulses, number of hit DOMs, charge-weighted timing and depth summaries, maximum
-pulse charge, and the HLC fraction.
+The report first motivates these variables through detector readout, HLC/SLC
+classification, raw waveform examples, and pulse-level event displays.
 
-## Baseline Split: Stopped vs Through-Going Muons
+Important figures:
 
-The first project-specific model separates atmospheric muons into stopped and
-through-going classes. It uses a pulse-level transformer together with
-event-level summary features. This split is used throughout the rest of the
-analysis because stopped and through-going events have different geometries and
-different data-MC behaviour.
+- [IceCube detector](../figures/report/icecube.png)
+- [Cherenkov schematic](../figures/report/shrenkov.pdf)
+- [HLC waveform example](../figures/report/plot_run126491_event30343391_DOM83-31-0.pdf)
+- [Stopped and through-going event display](../figures/report/event_display_through_stopped.pdf)
 
 Relevant code:
 
-- [`analysis/ThroughOrStopped_muon/`](../analysis/ThroughOrStopped_muon/)
+- [waveform demo scripts](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/)
+- [event display plotting](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_event_display_through_stopped.py)
+- [pulse event display utilities](../analysis/MC_vs_BS_analysis/GBreweighting/validation/pulse_event_display.py)
 
-## Baseline Data-vs-MC Test
+## Stopped vs Through-Going Split
 
-The main benchmark is a pulse-level transformer trained to classify real data
-against MC. The model is trained separately for stopped and through-going
-events. Before corrections, it reaches:
+Stopped and through-going atmospheric muons are physically different event
+classes, so the analysis first trains a transformer on MC truth labels to split
+them. The classifier sees pulse tokens together with event-level aggregates:
+number of pulses, total charge, time and depth extents, charge-weighted centers,
+and related summaries.
 
-- stopped: `AUC = 0.9882`
-- through-going: `AUC = 0.9960`
+Key figures:
 
-This means real and simulated atmospheric muons are clearly distinguishable.
-
-Relevant code:
-
-- [`validation/transformer/`](../analysis/MC_vs_BS_analysis/GBreweighting/validation/transformer/)
-- [`validation/Data_vs_MC_new/`](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/)
-
-## Correction 1: Angular GB Reweighting
-
-A direction transformer reconstructs zenith and azimuth. A
-gradient-boosted reweighter is then fit in reconstructed direction space,
-separately for stopped and through-going muons. The point is to correct an
-interpretable angular mismatch without directly forcing every pulse-level
-distribution to agree.
-
-The data-vs-MC benchmark improves to:
-
-- stopped: `AUC = 0.9688`
-- through-going: `AUC = 0.9935`
+- [Training history](../figures/report/training_history.pdf)
+- [Test performance](../figures/report/test_performance.pdf)
+- [MC score distributions](../figures/report/mc_test_score_distributions.pdf)
 
 Relevant code:
 
-- [`fit_GBreweighter_hlc_rde_unmerged_2M.py`](../analysis/MC_vs_BS_analysis/GBreweighting/fit_GBreweighter_hlc_rde_unmerged_2M.py)
-- [`direction_transformer_hlc_rde_unmerged_2M/`](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/)
+- [train_stopped_transformer.py](../analysis/ThroughOrStopped_muon/train_stopped_transformer.py)
+- [plot_stopped_results.py](../analysis/ThroughOrStopped_muon/plot_stopped_results.py)
+- [stopped transformer documentation plots](../analysis/MC_vs_BS_analysis/GBreweighting/validation/stopped_transformer_documentation/plot_stopped_transformer_documentation.py)
+- [stopped/through inference](../analysis/ThroughOrStopped_muon/inference/run_inference.py)
 
-## Correction 2: Pulse Merging
+## Baseline MC-vs-Data Comparison
 
-A pulse-merging step folds sub-`0.3 PE` HLC pulses into neighbouring pulses on
-the same DOM. This tests whether small unfolded pulses explain part of the
-MC-data difference.
+After applying the same stopped/through-going classifier to MC and data, the
+project compares the samples at pulse level and event level. Several mismatches
+are visible before any correction: low-charge data excess, a later data
+`dom_time` tail, depth shifts, larger high-charge tails, and a larger HLC
+fraction in data.
+
+Key figures:
+
+- [Pulse variables page 1](../figures/report/pulse_level_variables_unmerged_full_page1.pdf)
+- [Pulse variables page 2](../figures/report/pulse_level_variables_unmerged_full_page2.pdf)
+- [Event aggregates page 1](../figures/report/event_level_aggregates_unmerged_full_page1.pdf)
+- [Event aggregates page 2](../figures/report/event_level_aggregates_unmerged_full_page2.pdf)
+- [Event aggregates page 3](../figures/report/event_level_aggregates_unmerged_full_page3.pdf)
+
+The benchmark data-vs-MC transformer reaches:
+
+| Class | Baseline AUC |
+|---|---:|
+| Stopped | 0.9882 |
+| Through-going | 0.9960 |
+
+Relevant code:
+
+- [transformer model and dataset](../analysis/MC_vs_BS_analysis/GBreweighting/validation/transformer/)
+- [train_mcdata_parquet.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/train_mcdata_parquet.py)
+- [make_pulse_level_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_pulse_level_a4_figure.py)
+- [make_event_aggregate_a4_figure.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py)
+
+## Angular Reweighting
+
+The first correction tests whether part of the mismatch is caused by different
+arrival directions. A DOM-token direction transformer reconstructs zenith and
+azimuth. A gradient-boosted reweighter is then trained on only
+`(zenith, azimuth)`, separately for stopped and through-going events.
+
+Key figures:
+
+- [Direction training history](../figures/report/training_history_direction.pdf)
+- [Opening angle performance](../figures/report/open_angle_performance.pdf)
+- [Zenith/azimuth before GB reweighting](../figures/report/mc_data_zenith_azimuth_overlay.pdf)
+- [Zenith/azimuth after GB reweighting](../figures/report/mc_data_zenith_azimuth_overlay_with_GBR.pdf)
+- [GB-weighted pulse variables page 1](../figures/report/pulse_level_variables_unmerged_gbweighted_full_page1.pdf)
+- [GB-weighted event aggregates page 1](../figures/report/event_level_aggregates_unmerged_gbweighted_full_page1.pdf)
 
 The benchmark improves to:
 
-- stopped: `AUC = 0.9583`
-- through-going: `AUC = 0.9892`
+| Class | AUC after angular GB reweighting |
+|---|---:|
+| Stopped | 0.9688 |
+| Through-going | 0.9935 |
 
 Relevant code:
 
-- [`pulse_merger.py`](../analysis/MC_vs_BS_analysis/GBreweighting/pulse_merger.py)
-- [`data_parquet_v2/pulse_merging_plots/`](../analysis/MC_vs_BS_analysis/GBreweighting/validation/data_parquet_v2/pulse_merging_plots/)
+- [direction transformer training/inference](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/)
+- [direction documentation plots](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/plot_direction_transformer_documentation.py)
+- [GB reweighter](../analysis/MC_vs_BS_analysis/GBreweighting/fit_GBreweighter_hlc_rde_unmerged_2M.py)
+- [clean GB reweighter version](../analysis/MC_vs_BS_analysis/GBreweighting/fit_GBreweighter_hlc_rde_unmerged_2M_clean.py)
 
-## Correction 3: HLC Re-Labelling
+## Pulse Merging
 
-Permutation feature importance points to the HLC/SLC label as the strongest
-remaining carrier of data-MC distinguishability. A classifier trained on data
-predicts whether a pulse is HLC-like from the other pulse features. The most
-HLC-like simulated SLC pulses are then flipped to HLC until the event-level HLC
-fraction better matches data.
+The angular correction leaves most of the data-MC gap intact. The next
+correction targets the low-charge HLC excess in data. The `PulseMerger`
+algorithm merges pulses below `0.3 PE` into the nearest above-threshold pulse on
+the same DOM, preserving charge through a charge-weighted time average.
 
-This is the largest single improvement:
+Key figures:
 
-- stopped: `AUC = 0.9281`
-- through-going: `AUC = 0.9851`
+- [Pulse merger example](../figures/report/small_pulses_through_run136141_event242722_string61_dom3_final_legend_default_up.pdf)
+- [HLC/SLC charge distributions](../figures/report/mc_data_charge_hlc_slc.pdf)
+- [Pulses per DOM](../figures/report/pulses_per_dom.pdf)
 
-Relevant code:
+The benchmark improves to:
 
-- [`eval_transformer_perm_compare_hlcflip.py`](../analysis/MC_vs_BS_analysis/GBreweighting/validation/eval_transformer_perm_compare_hlcflip.py)
-- [`find_best_hlc_flip_rate.py`](../analysis/MC_vs_BS_analysis/GBreweighting/validation/find_best_hlc_flip_rate.py)
-- [`apply_transformer_hlc_best_flip_parquets.py`](../analysis/MC_vs_BS_analysis/GBreweighting/validation/apply_transformer_hlc_best_flip_parquets.py)
-
-## Diagnostic: Charge Versus Time
-
-The project also searches for afterpulse-like structures in charge-time space.
-The expected isolated delayed low-charge island is not clearly found in the
-pulse-level representation, suggesting either that the effect is rare in the
-selected charge range or that the conversion to pulse-level data washes out the
-signature.
+| Class | AUC after pulse merging |
+|---|---:|
+| Stopped | 0.9583 |
+| Through-going | 0.9892 |
 
 Relevant code:
 
-- [`plot_afterpulse_master.py`](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_master.py)
-- [`waveform_demo/`](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/)
+- [pulse_merger.py](../analysis/MC_vs_BS_analysis/GBreweighting/pulse_merger.py)
+- [pulse merging plot scripts](../analysis/MC_vs_BS_analysis/GBreweighting/validation/data_parquet_v2/pulse_merging_plots/)
+- [small pulse merge plot](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plots/small_pulses/make_small_pulse_merge_plot.py)
 
-## Final Diagnostic: Learned vMF Uncertainty
+## Feature Importance And HLC Re-Labelling
 
-A direction model is retrained with a von Mises-Fisher output head. In addition
-to predicting direction, it predicts a concentration parameter `kappa`. Low
-`kappa` marks events whose direction is uncertain. The low-`kappa` MC events
-reveal a population where the predicted direction collapses toward the vertical.
+Permutation feature importance shows that `hlc` is the strongest pulse-level
+carrier of the remaining data-MC separability. The project then trains a model
+on real data to recognize HLC-like pulses from the other pulse features. The
+most HLC-like simulated SLC pulses are flipped to HLC until the MC HLC-fraction
+distribution best matches data.
 
-Removing events with `kappa < 10` gives the final benchmark:
+Key figures:
 
-- stopped: `AUC = 0.9218`
-- through-going: `AUC = 0.9848`
+- [HLC flip rate sweep](../figures/report/hlc_flip_rate_sweep_merged_v2_stopped_through_side_by_side_0_to_10p0_step0p5.pdf)
+- [HLC fraction after best flip](../figures/report/hlc_frac_mc_vs_data_merged_v2_stopped_through_best_transformer_flip_side_by_side.pdf)
+
+The benchmark improves to:
+
+| Class | AUC after HLC re-labelling |
+|---|---:|
+| Stopped | 0.9281 |
+| Through-going | 0.9851 |
 
 Relevant code:
 
-- [`direction_transformer_vmf_final_hlcflip/`](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_vmf_final_hlcflip/)
-- [`vmf_code_bundle/`](../analysis/MC_vs_BS_analysis/GBreweighting/validation/vmf_code_bundle/)
+- [permutation importance](../analysis/MC_vs_BS_analysis/GBreweighting/validation/eval_transformer_perm_compare_hlcflip.py)
+- [Data_vs_MC_new permutation script](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/eval_permutation_importance.py)
+- [HLC flip sweep](../analysis/MC_vs_BS_analysis/GBreweighting/validation/run_hlc_flip_sweep_merged_v2_all.py)
+- [plot HLC flip sweep](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_hlc_flip_sweep_merged_v2_side_by_side.py)
+- [apply best HLC flip](../analysis/MC_vs_BS_analysis/GBreweighting/validation/apply_transformer_hlc_best_flip_parquets.py)
+
+## Charge-Time And Afterpulse Search
+
+Real PMTs can produce afterpulses, and those are not simulated in the same way
+in MC. The report therefore inspects the `charge` vs `dom_time` plane after the
+main corrections. The expected isolated delayed low-charge island is not
+clearly found in the pulse-level representation.
+
+Key figures:
+
+- [Stopped MC charge-time](../figures/report/afterpulse_stopped_mc_transformer_hlcflip_best.pdf)
+- [Stopped data charge-time](../figures/report/afterpulse_stopped_data_transformer_hlcflip_best.pdf)
+- [Stopped residual](../figures/report/afterpulse_stopped_mc_over_data_transformer_hlcflip_best.pdf)
+- [Through-going MC charge-time](../figures/report/afterpulse_through_mc_transformer_hlcflip_best.pdf)
+- [Through-going data charge-time](../figures/report/afterpulse_through_data_transformer_hlcflip_best.pdf)
+- [Through-going residual](../figures/report/afterpulse_through_mc_over_data_transformer_hlcflip_best.pdf)
+
+Relevant code:
+
+- [plot_afterpulse_a4_transformer_hlcflip_best.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_a4_transformer_hlcflip_best.py)
+- [afterpulse master plot](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_afterpulse_master.py)
+- [afterpulse summaries](../analysis/MC_vs_BS_analysis/GBreweighting/validation/afterpulse_master_summary.txt)
+- [waveform demo](../analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/)
+
+## vMF Uncertainty And Low-`kappa` Events
+
+The final diagnostic uses a von Mises-Fisher direction head. Instead of only
+predicting a point direction, the model predicts a concentration parameter
+`kappa`, which behaves like a learned per-event confidence. Low-`kappa` MC
+events reveal a population where the direction model collapses toward the
+vertical. Removing `kappa < 10` events from both samples gives the final stage.
+
+Key figures:
+
+- [vMF sphere schematic](../figures/report/vmf_sphere.pdf)
+- [vMF training history](../figures/report/vmf_training_history_loss_opening_kappa.pdf)
+- [MC/data kappa distributions](../figures/report/vmf_kappa_mc_data_stopped_through_side_by_side.pdf)
+- [Pole-collapse evidence](../figures/report/vmf_pole_collapse_evidence.pdf)
+
+The final benchmark is:
+
+| Class | Final AUC |
+|---|---:|
+| Stopped | 0.9218 |
+| Through-going | 0.9848 |
+
+Relevant code:
+
+- [vMF direction model](../analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_vmf_final_hlcflip/)
+- [vMF code bundle](../analysis/MC_vs_BS_analysis/GBreweighting/validation/vmf_code_bundle/)
+- [plot_vmf_uncertainty_final_hlcflip.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_vmf_uncertainty_final_hlcflip.py)
+- [plot_vmf_pole_collapse_evidence.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_vmf_pole_collapse_evidence.py)
+- [make_kappa10_cut_parquets.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/make_kappa10_cut_parquets.py)
+
+## Final Comparison
+
+The AUC values fall at every correction stage, but remain well above chance,
+especially for through-going events. The ROC curves show that the samples
+remain rank-separable. The logit distributions show a softer story: the
+classifier becomes less confident, especially for stopped events, even though
+it can still distinguish the samples.
+
+Key figures:
+
+- [Five-stage ROC overlay](../figures/report/five_stage_logit_roc_overlay_combined.pdf)
+- [Five-stage logit catalog](../figures/report/logit_catalog_common_xlim.pdf)
+
+Relevant code:
+
+- [build_stage_test_logits.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/build_stage_test_logits.py)
+- [plot_stage_logit_roc_overlay.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_roc_overlay.py)
+- [plot_stage_logit_catalog.py](../analysis/MC_vs_BS_analysis/GBreweighting/validation/Data_vs_MC_new/plot_stage_logit_catalog.py)
 
 ## Conclusion
 
-The corrections narrow the gap between simulation and data, especially through
-the HLC re-labelling step, but they do not close it. The remaining high AUCs
-show that IceCube MC and real burnsample atmospheric muons still differ in a
-joint pulse-level sense.
+The analysis narrows the gap between real and simulated IceCube atmospheric
+muons and identifies several concrete carriers of the discrepancy: angular
+structure, sub-threshold HLC pulses, HLC/SLC labelling, and a low-information
+MC population visible through learned direction uncertainty. The gap is not
+closed. The remaining data-MC separability is large enough that future IceCube
+ML work should treat simulation-to-data agreement as an active systematic, not
+as a solved assumption.

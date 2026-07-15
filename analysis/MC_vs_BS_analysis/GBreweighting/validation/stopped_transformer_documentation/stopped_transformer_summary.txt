@@ -1,0 +1,29 @@
+Stopped / through-going muon transformer -- summary
+====================================================
+
+Dataset sizes (MC, from metrics.json):
+  train events : 1619920
+  val   events : 202490
+  test  events : 202490
+
+Test-set performance (MC):
+  AUC               : 0.9915784347665365
+  weighted AUC      : 0.9884241807406955
+  accuracy          : 0.9486987011704282
+  weighted accuracy : 0.9405502080917358
+  best_val_auc      : 0.9881660409904969
+  AUC (recomputed from test_results) : 0.991581
+
+  Confusion matrix [rows=true, cols=pred], order [through, stopped]:
+    true through -> pred through   91,219 | stopped    6,728
+    true stopped -> pred through    3,663 | stopped  100,880
+
+Inference split (stopped_score > 0.5 => stopped):
+  MC inference:
+    stopped : 1,076,791  (53.177%)
+    through : 948,111  (46.823%)
+    total   : 2,024,902
+  Data inference:
+    stopped : 516,894  (26.526%)
+    through : 1,431,767  (73.474%)
+    total   : 1,948,661

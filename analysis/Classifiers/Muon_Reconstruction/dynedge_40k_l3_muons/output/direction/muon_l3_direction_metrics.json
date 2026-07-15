@@ -1,0 +1,13 @@
+{
+  "azimuth_mae_deg": 6.986622037277921,
+  "zenith_mae_deg": 2.9849144429977357,
+  "opening_mae_deg": 6.171169959181444,
+  "azimuth_median_deg": 3.9643438112941123,
+  "zenith_median_deg": 2.0540196427637767,
+  "opening_median_deg": 4.411990361607986,
+  "opening_q68_deg": 6.191351636173992,
+  "opening_q90_deg": 11.266089261190334,
+  "opening_q95_deg": 16.157544850520175,
+  "n_test": 8000,
+  "checkpoint": "/groups/icecube/holgerkc/Thesis_Analysis/Classifiers/Muon_Reconstruction/lightning_logs/version_19/checkpoints/DynEdge-epoch=23-val_loss=-1.88-train_loss=-2.09.ckpt"
+}

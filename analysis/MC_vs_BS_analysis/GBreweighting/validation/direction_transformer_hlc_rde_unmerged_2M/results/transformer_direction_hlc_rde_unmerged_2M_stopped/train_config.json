@@ -1,0 +1,35 @@
+{
+  "out_dir": "/groups/icecube/holgerkc/Thesis_Analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/results/transformer_direction_hlc_rde_unmerged_2M_stopped",
+  "epochs": 50,
+  "batch_size": 256,
+  "num_workers": 2,
+  "prefetch_factor": 2,
+  "lr": 0.0005,
+  "weight_decay": 0.01,
+  "early_stopping": 10,
+  "seed": 42,
+  "n_train": 861909,
+  "n_val": 107738,
+  "n_test": 107740,
+  "max_events_per_class": null,
+  "classes": [
+    "stopped"
+  ],
+  "d_model": 128,
+  "num_layers": 4,
+  "num_heads": 8,
+  "ffn_dim": 256,
+  "head_hidden_dim": 128,
+  "input_mode": "linear",
+  "dropout": 0.0,
+  "no_amp": false,
+  "input_dim": 68,
+  "max_doms": 256,
+  "max_pulses_per_dom": 16,
+  "pulse_features": [
+    "dom_time",
+    "charge",
+    "hlc",
+    "rde"
+  ]
+}

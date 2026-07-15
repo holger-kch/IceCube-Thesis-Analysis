@@ -1,0 +1,20 @@
+{
+  "task": "energy_multitask",
+  "test": {
+    "val_mse_log10": 0.041784241795539856,
+    "mae_GeV": 177.25350952148438,
+    "median_rel_error": 0.28263089060783386,
+    "q68_rel_error": 0.42187787055969245,
+    "log10_residual_std": 0.20445093512535095,
+    "stopped_acc": 0.8140000104904175,
+    "posz_mae_m": 96.41068267822266,
+    "posz_median_m": 73.52395629882812
+  },
+  "best_val_mse_log10": 0.03623167797923088,
+  "n_train": 8000,
+  "n_val": 1000,
+  "n_test": 1000,
+  "n_params": 3750991,
+  "stop_weight": 0.2,
+  "posz_weight": 0.1
+}

@@ -1,0 +1,30 @@
+{
+  "task": "pulse_hlc",
+  "class": "through",
+  "auc": 0.9998316218135388,
+  "n_train": 1000977,
+  "n_val": 214495,
+  "n_test": 214496,
+  "n_test_rows": 21245316,
+  "n_params": 1033485,
+  "epochs": 20,
+  "batch_size": 256,
+  "max_pulses": 512,
+  "max_events_per_source": 0,
+  "features": [
+    "charge",
+    "dom_x",
+    "dom_y",
+    "dom_z",
+    "dom_time",
+    "rde",
+    "pmt_area"
+  ],
+  "d_model": 128,
+  "num_layers": 6,
+  "num_heads": 8,
+  "ffn_dim": 384,
+  "dropout": 0.05,
+  "lr": 0.0003,
+  "weight_decay": 0.01
+}

@@ -1,0 +1,57 @@
+{
+  "class": "through",
+  "auc": 0.9178804368242364,
+  "n_train": 1664236,
+  "n_val": 356622,
+  "n_test": 356623,
+  "n_params": 1382321,
+  "epochs": 20,
+  "batch_size": 128,
+  "max_events_per_source": 2000000,
+  "features": [
+    "charge",
+    "dom_x",
+    "dom_y",
+    "dom_z",
+    "dom_time",
+    "rde",
+    "pmt_area"
+  ],
+  "feature_importance": [
+    {
+      "feature": "charge",
+      "auc_perm": 0.7281526998168719,
+      "auc_drop": 0.18972773700736445
+    },
+    {
+      "feature": "dom_x",
+      "auc_perm": 0.7194783442437246,
+      "auc_drop": 0.19840209258051178
+    },
+    {
+      "feature": "dom_y",
+      "auc_perm": 0.7135235166655735,
+      "auc_drop": 0.2043569201586629
+    },
+    {
+      "feature": "dom_z",
+      "auc_perm": 0.7894938642616659,
+      "auc_drop": 0.12838657256257047
+    },
+    {
+      "feature": "dom_time",
+      "auc_perm": 0.7347143104120022,
+      "auc_drop": 0.18316612641223418
+    },
+    {
+      "feature": "rde",
+      "auc_perm": 0.8755578513004102,
+      "auc_drop": 0.04232258552382617
+    },
+    {
+      "feature": "pmt_area",
+      "auc_perm": 0.9178803419093383,
+      "auc_drop": 9.491489805224518e-08
+    }
+  ]
+}

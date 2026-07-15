@@ -1,0 +1,17 @@
+% \input{chargestamp_comparison.tex}  — requires \usepackage{booktabs}
+\begin{table}[h]
+  \centering
+  \caption{Raw chargestamp data straight from the \texttt{I3DOMLaunch} for an
+           HLC and an SLC hit. Each stores one launch time, three fADC
+           samples, and the peak sample index. The HLC additionally carries
+           the full ATWD and fADC waveforms (not shown here).}
+  \label{tab:chargestamp_raw}
+  \begin{tabular}{l c c c c c}
+    \toprule
+    type & run & event & DOM (string, om) & $L.\text{time}$ [ns] & raw\_charge\_stamp \\
+    \midrule
+    HLC & 126491 & 30343391 & (83,\,31) & 12028.9 & [308, 1022, 1022] \\
+    SLC & 126386 & 43375646 & (20,\,1) & 180533.7 & [180, 280, 262] \\
+    \bottomrule
+  \end{tabular}
+\end{table}

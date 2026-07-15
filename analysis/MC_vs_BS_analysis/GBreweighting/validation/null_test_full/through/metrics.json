@@ -1,0 +1,13 @@
+{
+  "class": "through",
+  "auc": 0.49896592146790225,
+  "n_train": 663259,
+  "n_val": 142126,
+  "n_test": 142128,
+  "n_params": 1383505,
+  "epochs": 20,
+  "batch_size": 128,
+  "max_events": 2000000,
+  "seed": 42,
+  "verdict": "PIPELINE HONEST"
+}
