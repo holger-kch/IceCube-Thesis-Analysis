@@ -44,9 +44,12 @@
 *.synctex.gz
 *.toc
 
-# External reference PDFs are intentionally not versioned
-report/kilder/
-report/references_pdf/
+# Local writing/export folders are intentionally not versioned
+final/
+report/
+thesis/
+kilder/
+references_pdf/
 nuclear-and-particle-physics-*.pdf
 
 # Analysis is intentionally code-only

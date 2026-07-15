@@ -1,26 +1,22 @@
-# Analysis Code
+# Analysis Source Tree
 
-This directory contains the code-only analysis source tree copied from
-`/groups/icecube/holgerkc/Thesis_Analysis`.
+This directory contains the relevant source code from
+`/groups/icecube/holgerkc/Thesis_Analysis` for the Master Thesis Preparation
+Project.
 
-Only source code, notebooks with cleared outputs, configuration files, LaTeX
-snippets, Markdown documentation, and SLURM/script entry points are tracked.
-Raw detector data, SQLite databases, parquet exports, CSV files, model
-checkpoints, plots, metrics, logs, and cached outputs are intentionally
-excluded.
+It is intentionally narrower than the full historical working directory. Older
+general PID, energy, and exploratory classifier code has been left out unless it
+feeds the MC-vs-data discrepancy study directly.
 
-Most scripts still assume the NBI HEP cluster filesystem and IceCube software
-environment.
+## Included Project Code
 
-## Key Directories
+- [`ThroughOrStopped_muon/`](ThroughOrStopped_muon/) - stopped vs through-going
+  atmospheric muon classifier.
+- [`MC_vs_BS_analysis/scripts/`](MC_vs_BS_analysis/scripts/) - input table and
+  inference helper scripts.
+- [`MC_vs_BS_analysis/zenith_azimuth_inference/`](MC_vs_BS_analysis/zenith_azimuth_inference/) -
+  direction inference drivers.
+- [`MC_vs_BS_analysis/GBreweighting/`](MC_vs_BS_analysis/GBreweighting/) - the
+  main correction and validation code used by the project.
 
-- `MC_vs_BS_analysis/GBreweighting/` - GBReweighter fits, pulse merging, and
-  MC-to-data weighting scripts.
-- `MC_vs_BS_analysis/GBreweighting/validation/` - validation and diagnostic
-  scripts for data-vs-MC classifier tests, pulse-level comparisons, HLC
-  relabelling, and uncertainty studies.
-- `ThroughOrStopped_muon/` - transformer classifier code for stopped and
-  through-going atmospheric muons.
-- `Classifiers/` - supporting reconstruction and classification models,
-  including GraphNeT/DynEdge and pulse-transformer experiments.
-- `I3_reader/` - notebooks used for reading and extracting IceCube I3 data.
+For a stage-by-stage map, see [`../docs/code_map.md`](../docs/code_map.md).

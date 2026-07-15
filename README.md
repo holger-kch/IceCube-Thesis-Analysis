@@ -1,86 +1,69 @@
 # Narrowing the Gap Between Simulation and Real Data in IceCube
 
-This repository contains the report and analysis code for Holger Klevang
-Christiansen's Niels Bohr Institute Master Thesis Preparation Project on
-data-Monte Carlo discrepancies in IceCube atmospheric muon samples.
+Master Thesis Preparation Project, Niels Bohr Institute.
 
-The project asks how similar high-statistics IceCube simulation and real 2021
-burnsample data look at pulse level, and which corrections reduce the
-difference. A pulse-level transformer is used as the main discriminator between
-simulation and data. The report then studies angular reweighting, pulse
-merging, HLC pulse relabelling, and a learned von Mises-Fisher uncertainty
-diagnostic.
+This repository is the code-first GitHub version of the project. The local
+LaTeX report in `/groups/icecube/holgerkc/final` was used as the blueprint for
+this structure, but the report itself is not copied here. Instead, this repo
+keeps a readable project summary and the analysis code needed to understand
+how each result was produced.
 
-[Read the compiled report](report/main.pdf)
+## What This Project Does
 
-![IceCube event display](report/figures/icecube_events.png)
+IceCube machine-learning analyses are usually trained on Monte Carlo
+simulation and then applied to real detector data. This project tests how far
+that assumption can be trusted for high-statistics atmospheric muons by asking:
 
-## Result Snapshot
+> Can a pulse-level model tell real IceCube burnsample data from simulated
+> atmospheric muons, and which corrections make the two samples look more
+> alike?
 
-The baseline data-vs-MC transformer separates the samples almost perfectly,
-with test AUCs of `0.9882` for stopped muons and `0.9960` for through-going
-muons. Applying the correction chain reduces these to `0.9218` and `0.9848`.
-The discrepancy is narrowed, and several carriers of the mismatch are
-identified, but the samples remain distinguishable.
+The answer is: yes, the samples are very distinguishable at first. A sequence
+of targeted corrections narrows the gap, especially the data-driven HLC
+re-labelling, but it does not close it.
+
+| Stage | Stopped AUC | Through-going AUC |
+|---|---:|---:|
+| Baseline MC vs data classifier | 0.9882 | 0.9960 |
+| + angular GB reweighting | 0.9688 | 0.9935 |
+| + pulse merging | 0.9583 | 0.9892 |
+| + HLC re-labelling | 0.9281 | 0.9851 |
+| + removing low-`kappa` events | 0.9218 | 0.9848 |
+
+AUC `0.5` would mean that the classifier cannot distinguish MC from data.
+
+## Navigate The Project
+
+- [Project summary](docs/project_summary.md) explains the project in the same
+  order as the report, but as a compact GitHub-readable version.
+- [Code map](docs/code_map.md) links every analysis stage to the relevant code.
+- [Reproduction notes](docs/reproduction_notes.md) explain what is excluded and
+  what environment is needed.
+- [Analysis source tree](analysis/) contains the relevant code copied from
+  `/groups/icecube/holgerkc/Thesis_Analysis`.
 
 ## Repository Layout
 
 ```text
 .
-├── report/                         # LaTeX report, figures, bibliography, PDF
-│   ├── main.pdf                    # Compiled report
-│   ├── main.tex                    # Report entry point
-│   ├── chapters/                   # Report text
-│   └── figures/                    # Figures used in the report
-└── analysis/                       # Code-only analysis tree from Thesis_Analysis
-    ├── I3_reader/                  # I3-to-analysis extraction notebooks
-    ├── Classifiers/                # GNN and transformer reconstruction code
-    ├── MC_vs_BS_analysis/          # MC vs burnsample analysis and reweighting
-    └── ThroughOrStopped_muon/      # Stopped/through-going muon classifier
+├── docs/
+│   ├── project_summary.md       # Short standalone explanation of the project
+│   ├── code_map.md              # Report idea -> relevant code
+│   └── reproduction_notes.md    # Data, environment, and run notes
+└── analysis/
+    ├── ThroughOrStopped_muon/   # Stopped vs through-going classifier
+    └── MC_vs_BS_analysis/
+        ├── scripts/             # Database/inference helper scripts
+        ├── zenith_azimuth_inference/
+        └── GBreweighting/       # Main MC-vs-data correction and validation code
 ```
 
-## Main Analysis Threads
+## What Is Intentionally Not Here
 
-- `analysis/MC_vs_BS_analysis/GBreweighting/` contains the gradient-boosted
-  MC-to-data reweighting and pulse-merging workflow.
-- `analysis/MC_vs_BS_analysis/GBreweighting/validation/` contains the
-  validation scripts used to compare data and simulation after successive
-  corrections.
-- `analysis/ThroughOrStopped_muon/` contains the stopped vs through-going muon
-  transformer classifier used to split the sample.
-- `analysis/Classifiers/` contains earlier reconstruction and classification
-  work: PID, energy, direction, pulse transformers, DynEdge baselines, and
-  multi-task reconstruction models.
-- `report/figures/` contains the final figures used in the written report.
+No raw IceCube files, SQLite databases, parquet tables, CSV outputs, model
+checkpoints, plots, logs, or LaTeX report build products are tracked. The repo
+is meant to preserve the project logic and analysis code, not the cluster data
+products.
 
-## Reproducing the Report
-
-The report source is self-contained apart from the usual LaTeX toolchain:
-
-```bash
-cd report
-latexmk -pdf main.tex
-```
-
-If `latexmk` is unavailable, run `pdflatex`, `biber`, and `pdflatex` until
-references settle. The tracked `report/main.pdf` is the compiled version from
-the project directory.
-
-## Data Policy
-
-The `analysis/` tree is intentionally code-only. Raw IceCube files, SQLite
-databases, parquet tables, CSV files, trained checkpoints, plots, metrics,
-logs, and large intermediate data products are not included. Notebooks are
-kept only after clearing outputs. External reference PDFs from the
-report-writing directory are also not included; the bibliography is kept in
-`report/references.bib`.
-
-The code is therefore primarily a reproducible project record and analysis
-source tree. Running the full pipeline requires access to the original cluster
-data products and the relevant IceCube, GraphNeT, PyTorch, and scientific
-Python environments.
-
-## Author
-
-Holger Klevang Christiansen<br>
-Niels Bohr Institute, University of Copenhagen
+The original writing directory `/groups/icecube/holgerkc/final` remains the
+local report workspace only.
