@@ -12,7 +12,7 @@ The repository intentionally includes:
 - Slurm job scripts.
 - YAML configs and small JSON training/metric summaries.
 - Notebooks with outputs cleared.
-- Small text summaries and small TeX tables used by the analysis.
+- Small text summaries used by the analysis.
 - Project result and schematic figures.
 - PNG previews of PDF figures for GitHub browsing.
 

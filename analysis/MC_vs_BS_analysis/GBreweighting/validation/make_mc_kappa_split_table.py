@@ -66,28 +66,22 @@ def main() -> None:
     print(summary.to_string(index=False), flush=True)
 
     lines = [
-        r"\begin{tabular}{llrrrr}",
-        r"\toprule",
-        r"Class & Selection & $N_{\mathrm{DOMs}}$ & $N_{\mathrm{pulses}}$ "
-        r"& $Q_{\mathrm{tot}}$ [PE] & $\kappa$ \\",
-        r"\midrule",
+        "| class | selection | median DOMs | median pulses | median total charge [PE] | median kappa |",
+        "|---|---:|---:|---:|---:|---:|",
     ]
     for cls in ("stopped", "through"):
         sub = summary[summary["class"] == cls].reset_index(drop=True)
-        for i, row in sub.iterrows():
-            first = rf"\multirow{{2}}{{*}}{{{class_label(cls)}}}" if i == 0 else ""
+        for _, row in sub.iterrows():
             lines.append(
-                rf"{first} & {row['selection']} & {row['n_doms_q50']:.0f} "
-                rf"& {row['n_hits_q50']:.0f} & {row['qtot_q50']:.0f} "
-                rf"& {fmt_kappa(row['kappa_q50'])} \\"
+                f"| {class_label(cls)} | {row['selection']} | "
+                f"{row['n_doms_q50']:.0f} | {row['n_hits_q50']:.0f} | "
+                f"{row['qtot_q50']:.0f} | {fmt_kappa(row['kappa_q50'])} |"
             )
-        lines.append(r"\midrule" if cls == "stopped" else r"\bottomrule")
-    lines.append(r"\end{tabular}")
-    tex = "\n".join(lines) + "\n"
-    (OUT_DIR / "mc_kappa_split_table.tex").write_text(tex)
-    print(tex, flush=True)
+    markdown = "\n".join(lines) + "\n"
+    (OUT_DIR / "mc_kappa_split_summary.md").write_text(markdown)
+    print(markdown, flush=True)
     print(f"saved -> {OUT_DIR / 'mc_kappa_split_summary.csv'}", flush=True)
-    print(f"saved -> {OUT_DIR / 'mc_kappa_split_table.tex'}", flush=True)
+    print(f"saved -> {OUT_DIR / 'mc_kappa_split_summary.md'}", flush=True)
 
 
 if __name__ == "__main__":

@@ -29,6 +29,7 @@
 *.onnx
 
 # LaTeX build artifacts
+*.tex
 *.aux
 *.bbl
 *.bcf
