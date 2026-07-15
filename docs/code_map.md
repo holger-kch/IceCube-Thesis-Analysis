@@ -171,4 +171,3 @@ The report figure folder itself includes scripts for schematic figures that are
 not part of the cluster analysis pipeline.
 
 - [figures/report/make_ch3_figures.py](../figures/report/make_ch3_figures.py)
-- [figures/report/make_transformer_simple.py](../figures/report/make_transformer_simple.py)

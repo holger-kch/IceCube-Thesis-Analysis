@@ -5,7 +5,6 @@ LaTeX (Computer Modern) font so they match the thesis typography exactly.
 Outputs (in this folder):
     bdt_schematic.pdf
     vmf_sphere.pdf
-    analysis_pipeline.pdf
     decision_tree.pdf
     transformer_architecture.pdf
 
@@ -33,22 +32,6 @@ BLUE   = ("#dbe9f6", "#2e6da4")
 GREEN  = ("#e2f0e2", "#2e7d32")
 ORANGE = ("#fdecd2", "#d98c1f")
 GREY   = ("#efefef", "#8a8a8a")
-
-
-# ----------------------------------------------------------------------
-# shared helpers
-# ----------------------------------------------------------------------
-def box(ax, x, y, w, h, text, fc, ec, fs=10.5):
-    ax.add_patch(FancyBboxPatch((x-w/2, y-h/2), w, h,
-                 boxstyle="round,pad=0.02,rounding_size=0.10",
-                 facecolor=fc, edgecolor=ec, lw=1.4, zorder=2))
-    ax.text(x, y, text, ha="center", va="center", fontsize=fs, zorder=3)
-
-
-def arrow(ax, p, q):
-    ax.add_patch(FancyArrowPatch(p, q, arrowstyle="-|>",
-                 mutation_scale=12, color="#444444", lw=1.3,
-                 shrinkA=2, shrinkB=2, zorder=1))
 
 
 # ----------------------------------------------------------------------
@@ -138,40 +121,7 @@ def fig_vmf():
 
 
 # ----------------------------------------------------------------------
-# 3. Analysis pipeline  ->  analysis_pipeline.pdf
-# ----------------------------------------------------------------------
-def fig_pipeline():
-    fig, ax = plt.subplots(figsize=(5.9, 3.0))
-    ax.set_xlim(0, 10); ax.set_ylim(0, 5.6); ax.axis("off")
-
-    ax.text(5.0, 5.35,
-            r"Two transformers read the same pulses, "
-            r"boosted trees do the final tabular reweighting",
-            ha="center", va="center", fontsize=9.8, color="#555555")
-
-    box(ax, 1.6, 2.8, 2.5, 1.0,
-        r"Pulses" "\n" r"(\texttt{SplitInIcePulses})", *BLUE, fs=9.5)
-
-    box(ax, 5.0, 4.1, 2.3, 0.95, r"Transformer" "\n" r"classifier", *GREEN)
-    box(ax, 8.4, 4.1, 2.4, 0.95,
-        r"stopped /" "\n" r"through-going split", *GREEN, fs=9.5)
-
-    box(ax, 5.0, 1.5, 2.3, 0.95, r"Transformer" "\n" r"direction model", *GREEN)
-    box(ax, 7.6, 1.5, 1.5, 0.95, r"$(\hat\theta,\hat\phi)$", *GREEN)
-    box(ax, 9.0, 2.9, 1.7, 0.95, r"GBDT" "\n" r"reweighting", *ORANGE)
-
-    arrow(ax, (2.85, 3.1), (3.85, 4.0))
-    arrow(ax, (2.85, 2.5), (3.85, 1.6))
-    arrow(ax, (6.15, 4.1), (7.2, 4.1))
-    arrow(ax, (6.15, 1.5), (6.85, 1.5))
-    arrow(ax, (8.35, 1.95), (8.8, 2.42))
-    fig.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01)
-    fig.savefig("analysis_pipeline.pdf")
-    plt.close(fig)
-
-
-# ----------------------------------------------------------------------
-# 4. Single decision tree  ->  decision_tree.pdf
+# 3. Single decision tree  ->  decision_tree.pdf
 # ----------------------------------------------------------------------
 def fig_decision_tree():
     fig, ax = plt.subplots(figsize=(4.6, 2.9))
@@ -211,7 +161,7 @@ def fig_decision_tree():
 
 
 # ----------------------------------------------------------------------
-# 5. Grand transformer architecture (near full page)
+# 4. Grand transformer architecture (near full page)
 #    -> transformer_architecture.pdf
 # ----------------------------------------------------------------------
 def fig_transformer_architecture():
@@ -390,7 +340,6 @@ def fig_transformer_architecture():
 if __name__ == "__main__":
     fig_bdt()
     fig_vmf()
-    fig_pipeline()
     fig_decision_tree()
     fig_transformer_architecture()
     print("done")

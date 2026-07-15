@@ -105,7 +105,6 @@ azimuth. A gradient-boosted reweighter is then trained on only
 
 Key figures:
 
-- [Direction training history](../figures/report/training_history_direction.pdf)
 - [Opening angle performance](../figures/report/open_angle_performance.pdf)
 - [Zenith/azimuth before GB reweighting](../figures/report/mc_data_zenith_azimuth_overlay.pdf)
 - [Zenith/azimuth after GB reweighting](../figures/report/mc_data_zenith_azimuth_overlay_with_GBR.pdf)

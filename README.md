@@ -80,8 +80,6 @@ The analysis proceeds as follows:
    pulse merging, HLC re-labelling, and a vMF uncertainty cut.
 5. Compare the full correction chain with ROC curves and logit distributions.
 
-<img src="figures/report_previews/analysis_pipeline.png" alt="Analysis pipeline schematic" width="760">
-
 ## Key Takeaways
 
 | Finding | Evidence | Where to look |
@@ -158,7 +156,6 @@ and DOM efficiency.
 | <img src="figures/report/icecube.png" alt="IceCube detector schematic" width="260"><br>[icecube.png](figures/report/icecube.png) | Places the analysis in the IceCube detector geometry: strings, DOMs, DeepCore, and IceTop. | External/reference detector schematic used in the report. |
 | <img src="figures/report_previews/shrenkov.png" alt="Cherenkov radiation schematic" width="260"><br>[shrenkov.pdf](figures/report/shrenkov.pdf) | Explains why charged particles crossing the ice produce the light recorded by DOMs. | Report schematic asset. |
 | <img src="figures/report_previews/plot_run126491_event30343391_DOM83-31-0.png" alt="HLC waveform example" width="260"><br>[plot_run126491_event30343391_DOM83-31-0.pdf](figures/report/plot_run126491_event30343391_DOM83-31-0.pdf) | Shows the detailed ATWD/fADC waveform behind one real HLC hit, including later small pulses. | [waveform_demo](analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/) |
-| <img src="figures/report/plot_run126491_event30343391_DOM83-31-0.png" alt="PNG waveform copy" width="260"><br>[plot_run126491_event30343391_DOM83-31-0.png](figures/report/plot_run126491_event30343391_DOM83-31-0.png) | PNG copy of the same waveform for easy viewing. | [waveform_demo](analysis/MC_vs_BS_analysis/GBreweighting/validation/waveform_demo/) |
 | <img src="figures/report/icecube_events.png" alt="IceCube event topology examples" width="260"><br>[icecube_events.png](figures/report/icecube_events.png) | Shows the pulse-level appearance of track, cascade, and double-bang event types. | External/reference event-type figure used in the report. |
 | <img src="figures/report_previews/event_display_through_stopped.png" alt="Stopped and through-going muon event display" width="260"><br>[event_display_through_stopped.pdf](figures/report/event_display_through_stopped.pdf) | Motivates why stopped and through-going atmospheric muons are treated as separate classes. | [plot_event_display_through_stopped.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/plot_event_display_through_stopped.py), [pulse_event_display.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/pulse_event_display.py) |
 
@@ -182,9 +179,6 @@ explain the machinery used later.
 | <img src="figures/report_previews/decision_tree.png" alt="Decision tree schematic" width="260"><br>[decision_tree.pdf](figures/report/decision_tree.pdf) | Introduces the threshold-cut logic behind tree models. | [make_ch3_figures.py](figures/report/make_ch3_figures.py) |
 | <img src="figures/report_previews/bdt_schematic.png" alt="Boosted decision tree schematic" width="260"><br>[bdt_schematic.pdf](figures/report/bdt_schematic.pdf) | Explains why many shallow trees can form a stronger boosted model. | [make_ch3_figures.py](figures/report/make_ch3_figures.py) |
 | <img src="figures/report_previews/transformer_architecture.png" alt="Transformer architecture used in the report" width="260"><br>[transformer_architecture.pdf](figures/report/transformer_architecture.pdf) | Shows the event model used repeatedly: pulse tokens, embeddings, transformer blocks, pooling, and prediction head. | [make_ch3_figures.py](figures/report/make_ch3_figures.py) |
-| <img src="figures/report_previews/transformer_attention.png" alt="Transformer attention schematic" width="260"><br>[transformer_attention.pdf](figures/report/transformer_attention.pdf) | Explains the attention mechanism that lets pulses attend to each other. | [make_transformer_simple.py](figures/report/make_transformer_simple.py) |
-| <img src="figures/report_previews/transformer_simple_horizontal.png" alt="Simple transformer schematic PDF" width="260"><br>[transformer_simple_horizontal.pdf](figures/report/transformer_simple_horizontal.pdf) | Compact transformer overview used as a visual bridge into the analysis models. | [make_transformer_simple.py](figures/report/make_transformer_simple.py) |
-| <img src="figures/report/transformer_simple_horizontal.png" alt="Simple transformer schematic PNG" width="260"><br>[transformer_simple_horizontal.png](figures/report/transformer_simple_horizontal.png) | PNG copy of the same transformer schematic. | [make_transformer_simple.py](figures/report/make_transformer_simple.py) |
 
 </details>
 
@@ -237,7 +231,6 @@ Code:
 |---|---|---|
 | <img src="figures/report_previews/pulse_level_variables_unmerged_full_page1.png" alt="Baseline pulse variables page 1" width="260"><br>[pulse_level_variables_unmerged_full_page1.pdf](figures/report/pulse_level_variables_unmerged_full_page1.pdf) | Shows baseline `dom_time`, `charge`, `dom_x`, and `dom_y` disagreements by event class. | [make_pulse_level_a4_figure.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/make_pulse_level_a4_figure.py) |
 | <img src="figures/report_previews/pulse_level_variables_unmerged_full_page2.png" alt="Baseline pulse variables page 2" width="260"><br>[pulse_level_variables_unmerged_full_page2.pdf](figures/report/pulse_level_variables_unmerged_full_page2.pdf) | Shows baseline `dom_z`, `rde`, and `hlc` behavior, including the important HLC mismatch. | [make_pulse_level_a4_figure.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/make_pulse_level_a4_figure.py) |
-| <img src="figures/report_previews/pulse_level_variables_unmerged_full_page3.png" alt="Baseline pulse variables page 3" width="260"><br>[pulse_level_variables_unmerged_full_page3.pdf](figures/report/pulse_level_variables_unmerged_full_page3.pdf) | Additional baseline pulse-level diagnostics retained from the report figure set. | [make_pulse_level_a4_figure.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/make_pulse_level_a4_figure.py) |
 | <img src="figures/report_previews/event_level_aggregates_unmerged_full_page1.png" alt="Baseline event aggregates page 1" width="260"><br>[event_level_aggregates_unmerged_full_page1.pdf](figures/report/event_level_aggregates_unmerged_full_page1.pdf) | Compares event size and charge summaries before corrections. | [make_event_aggregate_a4_figure.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py) |
 | <img src="figures/report_previews/event_level_aggregates_unmerged_full_page2.png" alt="Baseline event aggregates page 2" width="260"><br>[event_level_aggregates_unmerged_full_page2.pdf](figures/report/event_level_aggregates_unmerged_full_page2.pdf) | Compares event time and depth summaries before corrections. | [make_event_aggregate_a4_figure.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py) |
 | <img src="figures/report_previews/event_level_aggregates_unmerged_full_page3.png" alt="Baseline event aggregates page 3" width="260"><br>[event_level_aggregates_unmerged_full_page3.pdf](figures/report/event_level_aggregates_unmerged_full_page3.pdf) | Shows depth spread and HLC fraction at event level, which motivates later HLC work. | [make_event_aggregate_a4_figure.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py) |
@@ -266,12 +259,9 @@ Code:
 
 | Figure | Why it is here | Code/source |
 |---|---|---|
-| <img src="figures/report_previews/training_history_direction.png" alt="Direction model training history" width="260"><br>[training_history_direction.pdf](figures/report/training_history_direction.pdf) | Checks that the direction model used for angular reweighting trained sensibly. | [plot_direction_transformer_documentation.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/plot_direction_transformer_documentation.py) |
 | <img src="figures/report_previews/open_angle_performance.png" alt="Direction reconstruction opening angle" width="260"><br>[open_angle_performance.pdf](figures/report/open_angle_performance.pdf) | Shows the direction reconstruction quality on held-out MC. | [plot_direction_transformer_documentation.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/plot_direction_transformer_documentation.py) |
 | <img src="figures/report_previews/mc_data_zenith_azimuth_overlay.png" alt="MC and data direction before reweighting" width="260"><br>[mc_data_zenith_azimuth_overlay.pdf](figures/report/mc_data_zenith_azimuth_overlay.pdf) | Shows the reconstructed direction mismatch before angular reweighting. | [plot_direction_transformer_documentation.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/plot_direction_transformer_documentation.py) |
 | <img src="figures/report_previews/mc_data_zenith_azimuth_overlay_with_GBR.png" alt="MC and data direction after reweighting" width="260"><br>[mc_data_zenith_azimuth_overlay_with_GBR.pdf](figures/report/mc_data_zenith_azimuth_overlay_with_GBR.pdf) | Confirms that the GB reweighter fixes the direction distribution it was trained to fix. | [fit_GBreweighter_hlc_rde_unmerged_2M.py](analysis/MC_vs_BS_analysis/GBreweighting/fit_GBreweighter_hlc_rde_unmerged_2M.py), [plot_direction_transformer_documentation.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/plot_direction_transformer_documentation.py) |
-| <img src="figures/report_previews/mc_data_zenith_azimuth_stopped.png" alt="Stopped direction diagnostic" width="260"><br>[mc_data_zenith_azimuth_stopped.pdf](figures/report/mc_data_zenith_azimuth_stopped.pdf) | Per-class angular diagnostic for stopped-classified events. | [direction documentation plots](analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/) |
-| <img src="figures/report_previews/mc_data_zenith_azimuth_through.png" alt="Through-going direction diagnostic" width="260"><br>[mc_data_zenith_azimuth_through.pdf](figures/report/mc_data_zenith_azimuth_through.pdf) | Per-class angular diagnostic for through-going-classified events. | [direction documentation plots](analysis/MC_vs_BS_analysis/GBreweighting/validation/direction_transformer_hlc_rde_unmerged_2M/documentation_plots/) |
 | <img src="figures/report_previews/pulse_level_variables_unmerged_gbweighted_full_page1.png" alt="GB-weighted pulse variables page 1" width="260"><br>[pulse_level_variables_unmerged_gbweighted_full_page1.pdf](figures/report/pulse_level_variables_unmerged_gbweighted_full_page1.pdf) | Tests whether angular weights also improve pulse-level variables such as charge and horizontal position. | [make_pulse_level_a4_figure.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/make_pulse_level_a4_figure.py) |
 | <img src="figures/report_previews/pulse_level_variables_unmerged_gbweighted_full_page2.png" alt="GB-weighted pulse variables page 2" width="260"><br>[pulse_level_variables_unmerged_gbweighted_full_page2.pdf](figures/report/pulse_level_variables_unmerged_gbweighted_full_page2.pdf) | Tests whether angular weights improve vertical position, DOM efficiency, and HLC behavior. | [make_pulse_level_a4_figure.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/make_pulse_level_a4_figure.py) |
 | <img src="figures/report_previews/event_level_aggregates_unmerged_gbweighted_full_page1.png" alt="GB-weighted event aggregates page 1" width="260"><br>[event_level_aggregates_unmerged_gbweighted_full_page1.pdf](figures/report/event_level_aggregates_unmerged_gbweighted_full_page1.pdf) | Checks event size and charge summaries after angular weighting. | [make_event_aggregate_a4_figure.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/make_event_aggregate_a4_figure.py) |
@@ -422,33 +412,12 @@ Code:
 
 </details>
 
-### 12. Extra report assets retained for completeness
-
-The files below were present in the local report figure directory and are kept
-so the GitHub figure archive matches the report workspace. They are not all
-analysis outputs, but they are part of the report material.
-
-<details>
-<summary><strong>Open extra report assets</strong></summary>
-
-| Figure | Why it is here | Code/source |
-|---|---|---|
-| <img src="figures/report_previews/analysis_pipeline.png" alt="Analysis pipeline schematic" width="260"><br>[analysis_pipeline.pdf](figures/report/analysis_pipeline.pdf) | Gives a one-image overview of the analysis flow. | Report pipeline schematic asset. |
-| <img src="figures/report/forside_bg.png" alt="Report front-page background" width="260"><br>[forside_bg.png](figures/report/forside_bg.png) | Title/front-page background asset from the report workspace. | Report asset copied from `final/figures`. |
-| <img src="figures/report/image1.png" alt="Extra report image 1" width="260"><br>[image1.png](figures/report/image1.png) | Extra image asset retained from the report figure directory. | Report asset copied from `final/figures`. |
-| <img src="figures/report/image2.png" alt="Extra report image 2" width="260"><br>[image2.png](figures/report/image2.png) | Extra image asset retained from the report figure directory. | Report asset copied from `final/figures`. |
-| <img src="figures/report/image3.png" alt="Extra report image 3" width="260"><br>[image3.png](figures/report/image3.png) | Extra image asset retained from the report figure directory. | Report asset copied from `final/figures`. |
-| <img src="figures/report/image4.png" alt="Extra report image 4" width="260"><br>[image4.png](figures/report/image4.png) | Extra image asset retained from the report figure directory. | Report asset copied from `final/figures`. |
-| <img src="figures/report/view_tr-1.png" alt="Extra report view image" width="260"><br>[view_tr-1.png](figures/report/view_tr-1.png) | Extra image asset retained from the report figure directory. | Report asset copied from `final/figures`. |
-
-</details>
-
 ## Figure Coverage
 
-All 56 visual files from `figures/report/` are represented in this README.
-PDFs are displayed through PNG previews in `figures/report_previews/`, while
-the original PDF files remain linked. For a compact table of the same
-figure-to-code mapping, use [docs/figure_index.md](docs/figure_index.md).
+All 41 visual figures used by `main.pdf` are represented in this README. PDFs
+are displayed through PNG previews in `figures/report_previews/`, while the
+original PDF files remain linked. For a compact table of the same figure-to-code
+mapping, use [docs/figure_index.md](docs/figure_index.md).
 
 ## What Is Not Here
 
