@@ -1,6 +1,8 @@
-# Narrowing the Gap Between Simulation and Real Data in IceCube
+# IceCube Master Thesis Preparation Project
 
-Master Thesis Preparation Project, Niels Bohr Institute.
+## Narrowing the Gap Between Simulation and Real Data in IceCube
+
+Niels Bohr Institute. Repository: [IceCube-Thesis-Analysis](https://github.com/holger-kch/IceCube-Thesis-Analysis).
 
 This project compares simulated Muon Gun atmospheric muons with real 2021
 burnsample atmospheric muons in IceCube. It follows the report written in
@@ -17,6 +19,51 @@ separate real 2021 burnsample atmospheric muons from simulated Muon Gun
 atmospheric muons almost perfectly. The project then applies a sequence of
 targeted corrections. They reduce the mismatch, especially for stopped muons,
 but the final samples are still clearly distinguishable.
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="figures/report/icecube.png" alt="IceCube detector schematic" width="100%">
+    </td>
+    <td width="50%">
+      <img src="figures/report_previews/event_display_through_stopped.png" alt="Through-going and stopped muon event display" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      IceCube instruments Antarctic ice with strings of DOMs. The analysis
+      compares real and simulated atmospheric muons after both samples have
+      been reconstructed into pulse-level detector readout.
+    </td>
+    <td>
+      Through-going and stopped muons leave visibly different pulse patterns,
+      so the MC-vs-data comparison is performed separately for the two event
+      classes.
+    </td>
+  </tr>
+</table>
+
+### Pulse-Level Input
+
+The models operate on `SplitInIcePulses`: each event is a set of pulse rows,
+and each pulse row carries detector position, timing, charge, DOM efficiency,
+and HLC/SLC status.
+
+| Variable | Example from 2021 burnsample | Meaning |
+|---|---:|---|
+| `charge` | `1.275 PE` | Reconstructed pulse charge. |
+| `dom_time` | `6530 ns` | Reconstructed pulse time. |
+| `dom_x`, `dom_y`, `dom_z` | `-256.14 m`, `-521.08 m`, `121.57 m` | DOM position in IceCube detector coordinates. |
+| `hlc` | `0` | Pulse-type flag: `1` for HLC, `0` for SLC. |
+| `rde` | `1` | Relative DOM efficiency. |
+| `event_time` | `59337.887082 MJD` | Event-level time label. |
+| `event_no` | `0` | Internal event index tying pulses to the same event. |
+| `string`, `dom_number` | `1`, `23` | DOM identifier. |
+
+The full pulse-format table in the report lists this same example row. The
+code that builds and loads the pulse-level rows lives in
+[analysis/MC_vs_BS_analysis/scripts](analysis/MC_vs_BS_analysis/scripts/) and
+[mc_vs_data_parquet_dataset.py](analysis/MC_vs_BS_analysis/GBreweighting/validation/mc_vs_data_parquet_dataset.py).
 
 <img src="figures/report_previews/five_stage_logit_roc_overlay_combined.png" alt="Five-stage ROC comparison of MC-vs-data separation" width="760">
 
