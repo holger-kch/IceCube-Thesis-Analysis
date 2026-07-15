@@ -1,12 +1,15 @@
-# --- Data files (NEVER commit) ---
+# Data products and detector files
 *.db
 *.db-wal
 *.db-shm
+*.sqlite
+*.sqlite3
+*.csv
 *.csb
 *.parquet
-*.csv
-*.npz
+*.feather
 *.npy
+*.npz
 *.pkl
 *.pickle
 *.h5
@@ -16,11 +19,8 @@
 *.i3.zst
 *.i3.bz2
 *.i3.gz
-*.feather
-*.nc
-*.tfrecord
 
-# --- Model checkpoints / weights ---
+# Model checkpoints and exported weights
 *.ckpt
 *.pt
 *.pth
@@ -28,50 +28,72 @@
 *.bin
 *.onnx
 
-# --- Job output / logs ---
-*.out
-*.err
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.bcf-*
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
 *.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+
+# External reference PDFs are intentionally not versioned
+report/kilder/
+report/references_pdf/
+nuclear-and-particle-physics-*.pdf
+
+# Analysis is intentionally code-only
+analysis/**/results/
+analysis/**/result/
+analysis/**/output/
+analysis/**/outputs/
+analysis/**/plots/
+analysis/**/data_parquet/
+analysis/**/*.json
+analysis/**/*.txt
+analysis/**/*.pdf
+analysis/**/*.png
+analysis/**/*.jpg
+analysis/**/*.jpeg
+analysis/**/*.svg
+analysis/**/*.docx
+
+# Job output, caches, and local tooling
+*.err
 slurm-*.out
 slurm-*.err
 logs/
 **/logs/
-
-# --- Python ---
+cache_and_logs/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.Python
-*.egg-info/
 .ipynb_checkpoints/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
 
-# --- Environments / secrets ---
+# Environments and local state
 .venv/
 venv/
 env/
 .env
-.env.local
-.env.*.local
-
-# --- ML experiment tracking ---
+.env.*
 wandb/
 mlruns/
 lightning_logs/
 tb_logs/
 runs/
-
-# --- OS / IDE ---
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
 .claude/
-
-# --- Allow plots even if a parent rule would catch them ---
-!**/plots/**/*.png
-!**/plots/**/*.pdf
-!**/plots/**/*.svg
