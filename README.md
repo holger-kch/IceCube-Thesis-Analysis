@@ -21,6 +21,13 @@ but the final samples are still clearly distinguishable.
 
 <img src="figures/report_previews/five_stage_logit_roc_overlay_combined.png" alt="Five-stage ROC comparison of MC-vs-data separation" width="760">
 
+<img src="figures/report_previews/logit_catalog_common_xlim.png" alt="MC-vs-data raw-logit distributions by analysis stage" width="760">
+
+Read together, these two figures are the shortest version of the project. The
+ROC curves show that MC and data remain rank-separable after all corrections.
+The logit distributions show that the corrections still matter: the classifier
+loses much of its confidence, especially for stopped muons.
+
 ## Main Result
 
 The main diagnostic is a binary MC-vs-data classifier. An AUC of `0.5` would
@@ -48,6 +55,9 @@ corrections. In other words: the gap is narrowed, not solved.
   report-style walkthrough.
 - Open [docs/figure_index.md](docs/figure_index.md) when you want figure to
   code provenance in table form.
+- Open [docs/report_traceability.md](docs/report_traceability.md) to audit
+  which report sections, figures, tables, and numerical results are backed by
+  which code or source.
 - Open [docs/code_map.md](docs/code_map.md) to navigate the analysis tree by
   scientific task.
 - Open [docs/reproduction_notes.md](docs/reproduction_notes.md) for what is

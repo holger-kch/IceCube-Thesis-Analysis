@@ -18,7 +18,7 @@ browsing. The original PDF/PNG files are kept in `figures/report/`.
 | [decision_tree.pdf](../figures/report/decision_tree.pdf) | [preview](../figures/report_previews/decision_tree.png) | Decision-tree schematic | [make_ch3_figures.py](../figures/report/make_ch3_figures.py) |
 | [bdt_schematic.pdf](../figures/report/bdt_schematic.pdf) | [preview](../figures/report_previews/bdt_schematic.png) | Boosted-decision-tree schematic | [make_ch3_figures.py](../figures/report/make_ch3_figures.py) |
 | [transformer_architecture.pdf](../figures/report/transformer_architecture.pdf) | [preview](../figures/report_previews/transformer_architecture.png) | Transformer architecture schematic | [make_ch3_figures.py](../figures/report/make_ch3_figures.py) |
-| [vmf_sphere.pdf](../figures/report/vmf_sphere.pdf) | [preview](../figures/report_previews/vmf_sphere.png) | von Mises-Fisher schematic | Report figure asset; used by vMF section |
+| [vmf_sphere.pdf](../figures/report/vmf_sphere.pdf) | [preview](../figures/report_previews/vmf_sphere.png) | von Mises-Fisher schematic | [make_ch3_figures.py](../figures/report/make_ch3_figures.py) |
 
 ## Stopped vs Through-Going Classifier
 
